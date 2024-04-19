@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* index */
+.main {
+  margin-top: 13%;
+  margin-inline: 20%;
+}
+.title {
+  text-align: center;
+}
+/*end of index */
+
+/* home */
+
+nav {
+  padding-inline: 20px;
+}
+
+.main-home {
+  margin-inline: 20%;
+}
+/*end of home */
