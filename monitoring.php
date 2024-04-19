@@ -47,6 +47,9 @@ $conn->close();
 
 <body class="">
   <div class="text-center ">
+    <marquee behavior="" direction="left" width="100%">
+      <h1>BUILDNET CONSTRUCTION INC.</h1>
+    </marquee>
     <h1>Queue Monitoring</h1>
     <h2>Current Customer:</h2>
     <p><?php echo $current_customer_name; ?></p>

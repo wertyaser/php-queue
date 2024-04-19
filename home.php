@@ -60,11 +60,11 @@ $conn->close();
       <li><strong>Buildnet</strong></li>
     </ul>
     <ul>
-      <li><a href="#" class="contrast">Home</a></li>
-      <li><a href="#" class="contrast">Monitoring</a></li>
-      <li><a href="#" class="contrast">Controller</a></li>
-      <li><a href="#" class="contrast">Admin</a></li>
-      <li><a href="#" class="contrast">Logout</a></li>
+      <li><a href="home.php" class="contrast">Home</a></li>
+      <li><a href="monitoring.php" class="contrast">Monitoring</a></li>
+      <li><a href="controller.php" class="contrast">Controller</a></li>
+      <li><a href="admin.php" class="contrast">Admin</a></li>
+      <li><a href="php/logout.php" class="contrast">Logout</a></li>
     </ul>
   </nav>
 
@@ -73,6 +73,15 @@ $conn->close();
     <h1 class="title">Queuing System</h1>
     <form method="POST" action="home.php">
       <input type="text" id="customer_name" name="customer_name" placeholder="Name" />
+      <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
+        <option selected disabled value="">
+          Select your transaction type....
+        </option>
+        <option>Window 1</option>
+        <option>Window 2</option>
+        <option>Window 3</option>
+        <option>Window 4</option>
+      </select>
       <button type="submit" name="generate_queue">
         Generate Queue Number
       </button>
