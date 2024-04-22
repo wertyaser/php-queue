@@ -41,23 +41,35 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <link rel="stylesheet" href="./css/output.css" /> -->
-  <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" />
+  <link rel="stylesheet" href="./css/output.css" />
+  <!-- <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" /> -->
   <title>Queue Monitoring</title>
 </head>
 
 <body class="">
-  <div class="text-center ">
+  <div class="text-center">
     <marquee behavior="" direction="left" width="100%">
-      <h1>BUILDNET CONSTRUCTION INC.</h1>
+      <h1 class="text-2xl">BUILDNET CONSTRUCTION INC.</h1>
     </marquee>
-    <h1>Queue Monitoring</h1>
-    <h2>Current Customer:</h2>
-    <p><?php echo $current_customer_name; ?></p>
-    <h2>Next Customer:</h2>
-    <p><?php echo $next_customer_name; ?></p>
+    <h1 class="text-3xl font-semibold my-5">MONITORING</h1>
+  </div>
+  <div class="grid grid-cols-3 gap-4 justify-center bg-blue-400 text-center">
+    <div class="my-5">
+      <h1 class="text-2xl text-white font-semibold">Window 1</h1>
+      <p><?php echo $current_customer_name; ?></p>
+    </div>
+    <div class="my-5">
+      <h1 class="text-2xl text-white font-semibold">Window 2</h1>
+    </div>
+    <div class="my-5">
+      <h1 class="text-2xl text-white font-semibold">Window 3</h1>
+    </div>
+  </div>
+  <div class="bg-yellow-400 py-5">
+    <h2 class="">Next Customer: <?php echo $next_customer_name; ?></h2>
   </div>
 </body>
+
 <script>
   // Function to reload the page every 5 seconds
   function reloadPage() {
