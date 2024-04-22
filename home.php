@@ -73,7 +73,7 @@ $conn->close();
     <h1 class="title">Queuing System</h1>
     <form method="POST" action="home.php">
       <input type="text" id="customer_name" name="customer_name" placeholder="Name" />
-      <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
+      <select name="favorite-cuisine" aria-label="Select your favorite cuisine...">
         <option selected disabled value="">
           Select your transaction type....
         </option>

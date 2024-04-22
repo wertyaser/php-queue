@@ -41,7 +41,8 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/output.css" />
+  <!-- <link rel="stylesheet" href="./css/output.css" /> -->
+  <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" />
   <title>Queue Monitoring</title>
 </head>
 
@@ -57,5 +58,18 @@ $conn->close();
     <p><?php echo $next_customer_name; ?></p>
   </div>
 </body>
+<script>
+  // Function to reload the page every 5 seconds
+  function reloadPage() {
+    setTimeout(function () {
+      location.reload();
+    }, 5000); // 3000 milliseconds = 5 seconds
+  }
+
+  // Call the reloadPage function when the page loads
+  window.onload = function () {
+    reloadPage();
+  };
+</script>
 
 </html>
