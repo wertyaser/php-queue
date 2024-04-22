@@ -7,9 +7,10 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["generate_queue"])) {
     $customer_name = $_POST["customer_name"];
+    $type = $_POST["type"];
 
     // Insert customer name into the customers table
-    $sql_insert_customer = "INSERT INTO customers (name) VALUES ('$customer_name')";
+    $sql_insert_customer = "INSERT INTO customers (name, type) VALUES ('$customer_name', '$type')";
     $conn->query($sql_insert_customer);
 
     // Get the customer_id of the inserted customer
@@ -73,7 +74,7 @@ $conn->close();
     <h1 class="title">Queuing System</h1>
     <form method="POST" action="home.php">
       <input type="text" id="customer_name" name="customer_name" placeholder="Name" />
-      <select name="favorite-cuisine" aria-label="Select your favorite cuisine...">
+      <select name="type">
         <option selected disabled value="">
           Select your transaction type....
         </option>

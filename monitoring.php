@@ -46,27 +46,33 @@ $conn->close();
   <title>Queue Monitoring</title>
 </head>
 
-<body class="">
+<body class="bg-blue-300">
   <div class="text-center">
-    <marquee behavior="" direction="left" width="100%">
-      <h1 class="text-2xl">BUILDNET CONSTRUCTION INC.</h1>
+    <marquee scrollamount="20" direction="left" width="80%">
+      <h1 class="text-2xl text-white">BUILDNET CONSTRUCTION INC. BUILDNET CONSTRUCTION INC. BUILDNET CONSTRUCTION INC.
+      </h1>
     </marquee>
-    <h1 class="text-3xl font-semibold my-5">MONITORING</h1>
+    <h1 class="text-5xl font-bold my-5 text-white">MONITORING</h1>
   </div>
-  <div class="grid grid-cols-3 gap-4 justify-center bg-blue-400 text-center">
-    <div class="my-5">
-      <h1 class="text-2xl text-white font-semibold">Window 1</h1>
-      <p><?php echo $current_customer_name; ?></p>
+  <div class="grid grid-cols-3 gap-4 justify-center text-center rounded-t-lg shadow ">
+    <div class="bg-blue-400 p-5 rounded-lg my-5">
+      <h1 class="text-2xl text-white font-semibold mb-5">Window 1</h1>
+      <hr>
+      <p class="text-white font-mono font-bold my-16 text-6xl"><?php echo $current_customer_name; ?></p>
     </div>
-    <div class="my-5">
-      <h1 class="text-2xl text-white font-semibold">Window 2</h1>
+    <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
+      <h1 class="text-2xl text-white font-semibold mb-5">Window 2</h1>
+      <hr>
+      <p class="text-white font-mono font-bold my-16 text-6xl">trn-<?php echo $current_customer_name; ?></p>
     </div>
-    <div class="my-5">
-      <h1 class="text-2xl text-white font-semibold">Window 3</h1>
+    <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
+      <h1 class="text-2xl text-white font-semibold mb-5">Window 3</h1>
+      <hr>
+      <p class="text-white font-mono font-bold my-16 text-6xl"><?php echo $current_customer_name; ?></p>
     </div>
   </div>
-  <div class="bg-yellow-400 py-5">
-    <h2 class="">Next Customer: <?php echo $next_customer_name; ?></h2>
+  <div class="bg-yellow-400 py-5 rounded-b-lg shadow ">
+    <h2 class="text-white font-bold ml-5">Next Customer: <?php echo $next_customer_name; ?></h2>
   </div>
 </body>
 
