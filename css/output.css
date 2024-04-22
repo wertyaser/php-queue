@@ -603,6 +603,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .max-h-6 {
   max-height: 1.5rem;
 }

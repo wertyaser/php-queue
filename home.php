@@ -6,11 +6,13 @@ session_start();
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["generate_queue"])) {
-    $customer_name = $_POST["customer_name"];
+    // $customer_name = $_POST["customer_name"];
+
     $type = $_POST["type"];
+    $queue_num = $_POST["queue_num"];
 
     // Insert customer name into the customers table
-    $sql_insert_customer = "INSERT INTO customers (name, type) VALUES ('$customer_name', '$type')";
+    $sql_insert_customer = "INSERT INTO customers (type, queue_num) VALUES ('$type', '$queue_num')";
     $conn->query($sql_insert_customer);
 
     // Get the customer_id of the inserted customer
@@ -73,8 +75,8 @@ $conn->close();
   <div class="main-home">
     <h1 class="title">Queuing System</h1>
     <form method="POST" action="home.php">
-      <input type="text" id="customer_name" name="customer_name" placeholder="Name" />
-      <select name="type">
+      <!-- <input type="text" id="customer_name" name="customer_name" placeholder="Name" required /> -->
+      <select name="type" required>
         <option selected disabled value="">
           Select your transaction type....
         </option>
@@ -83,7 +85,7 @@ $conn->close();
         <option>Window 3</option>
         <option>Window 4</option>
       </select>
-      <button type="submit" name="generate_queue">
+      <button type="submit" name="generate_queue" id="generateQueueBtn">
         Generate Queue Number
       </button>
       <button type="submit" name="next_customer">Next Customer</button>
@@ -94,6 +96,36 @@ $conn->close();
   <!-- asdasdasd -->
 
 </body>
-<script src="js/minimal-theme-switcher.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener for the "Generate Queue Number" button
+    document.getElementById("generateQueueBtn").addEventListener("click", function () {
+      var selectedType = document.querySelector("select[name='type']").value;
+      if (selectedType === "") {
+        alert("Please select a transaction type.");
+        return;
+      }
+
+      // Generate random number (e.g., between 1000 and 9999)
+      var queueNumber = Math.floor(Math.random() * 9000) + 1000;
+
+      // Show the generated queue number in an alert
+      alert("Your queue number: " + queueNumber);
+
+      // Set the generated queue number in a hidden input field
+      var queueNumberInput = document.createElement("input");
+      queueNumberInput.type = "hidden";
+      queueNumberInput.name = "queue_num"; // Add name attribute to identify in PHP
+      queueNumberInput.value = queueNumber;
+      document.getElementById("queueForm").appendChild(queueNumberInput);
+
+      // Submit the form
+      document.getElementById("queueForm").submit();
+    });
+  });
+
+
+</script>
+
 
 </html>
