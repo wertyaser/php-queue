@@ -2,14 +2,23 @@
 session_start();
 include 'php/db_connect.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['admin_id'])) {
-    header('Location: index.php');
-    exit;
-}
+// // Check if the user is logged in
+// if (!isset($_SESSION['username'])) {
+//     header('Location: index.php');
+//     exit;
+// }
 
-// Get the logged-in admin user's type
-$admin_type = $_SESSION['type'];
+// // Get the logged-in admin user's type
+// $admin_type = $_SESSION['type'];
+
+// Handle serving next customer
+if (isset($_POST["next_customer"])) {
+    // Update queue status for current and next customer
+    $sql_update_current = "UPDATE queue SET status='served' WHERE status='serving'";
+    $sql_update_next = "UPDATE queue SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
+    $conn->query($sql_update_current);
+    $conn->query($sql_update_next);
+}
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +39,7 @@ $admin_type = $_SESSION['type'];
                 <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="monitoring.php">Open Monitoring</a></button>
                 <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        href="logout.php">Next</a></button>
+                        name="next_customer">Next</a></button>
             </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg " data-aos="flip-up">
@@ -62,8 +71,8 @@ $admin_type = $_SESSION['type'];
                 </thead>
 
                 <?php
-                // $sql = "SELECT * FROM `customers`";
-                $sql = "SELECT * FROM `customers` WHERE type = '$admin_type'";
+                $sql = "SELECT * FROM `customers`";
+                // $sql = "SELECT * FROM `queue` WHERE type = '$admin_type'";
                 $result = mysqli_query($conn, $sql);
 
                 if ($result) {

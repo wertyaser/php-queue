@@ -31,14 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  // Handle serving next customer
-  if (isset($_POST["next_customer"])) {
-    // Update queue status for current and next customer
-    $sql_update_current = "UPDATE queue SET status='served' WHERE status='serving'";
-    $sql_update_next = "UPDATE queue SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
-    $conn->query($sql_update_current);
-    $conn->query($sql_update_next);
-  }
+
 }
 
 // Close the database connection
@@ -65,8 +58,6 @@ $conn->close();
     </ul>
     <ul>
       <li><a href="home.php" class="contrast">Home</a></li>
-      <li><a href="monitoring.php" class="contrast">Monitoring</a></li>
-      <li><a href="controller.php" class="contrast">Controller</a></li>
       <li><a href="admin.php" class="contrast">Admin</a></li>
       <li><a href="logout.php" class="contrast">Logout</a></li>
     </ul>
@@ -78,7 +69,7 @@ $conn->close();
     <form method="POST" action="home.php">
       <!-- <input type="text" id="customer_name" name="customer_name" placeholder="Name" required /> -->
       <input type="text" id="queueNumberInput" name="queue_number" disabled>
-      <select name="type">
+      <select name="type" required>
         <option selected disabled value="">
           Select your transaction type....
         </option>
@@ -90,7 +81,7 @@ $conn->close();
       <button type="submit" name="generate_queue" id="generateQueueBtn">
         Generate Queue Number
       </button>
-      <button type="submit" name="next_customer">Next Customer</button>
+      <!-- <button type="submit" name="next_customer">Next Customer</button> -->
     </form>
   </div>
 

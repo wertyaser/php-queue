@@ -11,7 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = $conn->query($sql);
 
   if ($result->num_rows == 1) {
+    // $_SESSION["username"] = $username;
+    // header("Location: home.php");
+    $row = $result->fetch_assoc();
     $_SESSION["username"] = $username;
+    $_SESSION["type"] = $row["type"];
     header("Location: home.php");
     exit();
   } else {
