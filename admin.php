@@ -38,8 +38,10 @@ if (isset($_POST["next_customer"])) {
             <div class="flex gap-3">
                 <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="monitoring.php">Open Monitoring</a></button>
-                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        name="next_customer">Next</a></button>
+                <form action="" method="post">
+                    <button name="next_customer" class=" p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md
+                        px-6">Next</button>
+                </form>
             </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg " data-aos="flip-up">

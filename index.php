@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // header("Location: home.php");
     $row = $result->fetch_assoc();
     $_SESSION["username"] = $username;
+    $_SESSION["admin_id"] = $row["id"];
     $_SESSION["type"] = $row["type"];
     header("Location: home.php");
     exit();
