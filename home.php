@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // $customer_name = $_POST["customer_name"];
 
     $type = $_POST["type"];
-    $queue_num = $_POST["queue_num"];
+    $queue_num = $_POST["queue_number"];
 
     // Insert customer name into the customers table
     $sql_insert_customer = "INSERT INTO customers (type, queue_num) VALUES ('$type', '$queue_num')";
@@ -54,6 +54,7 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" />
   <link rel="stylesheet" href="css/index.css">
+  <!-- <link rel="stylesheet" href="./css/output.css" /> -->
   <title>Queuing System</title>
 </head>
 
@@ -67,7 +68,7 @@ $conn->close();
       <li><a href="monitoring.php" class="contrast">Monitoring</a></li>
       <li><a href="controller.php" class="contrast">Controller</a></li>
       <li><a href="admin.php" class="contrast">Admin</a></li>
-      <li><a href="php/logout.php" class="contrast">Logout</a></li>
+      <li><a href="logout.php" class="contrast">Logout</a></li>
     </ul>
   </nav>
 
@@ -76,7 +77,8 @@ $conn->close();
     <h1 class="title">Queuing System</h1>
     <form method="POST" action="home.php">
       <!-- <input type="text" id="customer_name" name="customer_name" placeholder="Name" required /> -->
-      <select name="type" required>
+      <input type="text" id="queueNumberInput" name="queue_number" disabled>
+      <select name="type">
         <option selected disabled value="">
           Select your transaction type....
         </option>
@@ -98,7 +100,6 @@ $conn->close();
 </body>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Add event listener for the "Generate Queue Number" button
     document.getElementById("generateQueueBtn").addEventListener("click", function () {
       var selectedType = document.querySelector("select[name='type']").value;
       if (selectedType === "") {
@@ -109,20 +110,15 @@ $conn->close();
       // Generate random number (e.g., between 1000 and 9999)
       var queueNumber = Math.floor(Math.random() * 9000) + 1000;
 
-      // Show the generated queue number in an alert
-      alert("Your queue number: " + queueNumber);
+      // Set the generated queue number in the disabled input field
+      document.getElementById("queueNumberInput").value = queueNumber;
 
-      // Set the generated queue number in a hidden input field
-      var queueNumberInput = document.createElement("input");
-      queueNumberInput.type = "hidden";
-      queueNumberInput.name = "queue_num"; // Add name attribute to identify in PHP
-      queueNumberInput.value = queueNumber;
-      document.getElementById("queueForm").appendChild(queueNumberInput);
+      // Enable the input field before submitting the form
+      document.getElementById("queueNumberInput").disabled = false;
 
-      // Submit the form
-      document.getElementById("queueForm").submit();
     });
   });
+
 
 
 </script>

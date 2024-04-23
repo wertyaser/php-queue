@@ -8,26 +8,26 @@ $result_current = $conn->query($sql_current);
 $result_next = $conn->query($sql_next);
 
 // Fetch current customer's name
-$current_customer_name = "No customer";
+$current_customer_number = "No customer";
 if ($result_current->num_rows > 0) {
   $current_customer = $result_current->fetch_assoc();
   $current_customer_id = $current_customer["customer_id"];
-  $sql_current_customer_name = "SELECT name FROM customers WHERE id=$current_customer_id";
-  $result_current_customer_name = $conn->query($sql_current_customer_name);
-  if ($result_current_customer_name->num_rows > 0) {
-    $current_customer_name = $result_current_customer_name->fetch_assoc()["name"];
+  $sql_current_customer_number = "SELECT queue_num FROM customers WHERE id=$current_customer_id";
+  $result_current_customer_number = $conn->query($sql_current_customer_number);
+  if ($result_current_customer_number->num_rows > 0) {
+    $current_customer_number = $result_current_customer_number->fetch_assoc()["queue_num"];
   }
 }
 
 // Fetch next customer's name
-$next_customer_name = "No customer";
+$next_customer_number = "No customer";
 if ($result_next->num_rows > 0) {
   $next_customer = $result_next->fetch_assoc();
   $next_customer_id = $next_customer["customer_id"];
-  $sql_next_customer_name = "SELECT name FROM customers WHERE id=$next_customer_id";
-  $result_next_customer_name = $conn->query($sql_next_customer_name);
-  if ($result_next_customer_name->num_rows > 0) {
-    $next_customer_name = $result_next_customer_name->fetch_assoc()["name"];
+  $sql_next_customer_number = "SELECT queue_num FROM customers WHERE id=$next_customer_id";
+  $result_next_customer_number = $conn->query($sql_next_customer_number);
+  if ($result_next_customer_number->num_rows > 0) {
+    $next_customer_number = $result_next_customer_number->fetch_assoc()["queue_num"];
   }
 }
 
@@ -58,21 +58,21 @@ $conn->close();
     <div class="bg-blue-400 p-5 rounded-lg my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 1</h1>
       <hr>
-      <p class="text-white font-mono font-bold my-16 text-6xl"><?php echo $current_customer_name; ?></p>
+      <p class="text-white font-mono font-bold my-16 text-5xl">W1-<?php echo $current_customer_number; ?></p>
     </div>
     <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 2</h1>
       <hr>
-      <p class="text-white font-mono font-bold my-16 text-6xl">trn-<?php echo $current_customer_name; ?></p>
+      <p class="text-white font-mono font-bold my-16 text-5xl">W2-<?php echo $current_customer_number; ?></p>
     </div>
     <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 3</h1>
       <hr>
-      <p class="text-white font-mono font-bold my-16 text-6xl"><?php echo $current_customer_name; ?></p>
+      <p class="text-white font-mono font-bold my-16 text-6xl">W3-<?php echo $current_customer_number; ?></p>
     </div>
   </div>
   <div class="bg-yellow-400 py-5 rounded-b-lg shadow ">
-    <h2 class="text-white font-bold ml-5">Next Customer: <?php echo $next_customer_name; ?></h2>
+    <h2 class="text-white font-bold ml-5">Next Customer: <?php echo $next_customer_number; ?></h2>
   </div>
 </body>
 
