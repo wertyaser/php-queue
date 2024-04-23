@@ -1,3 +1,17 @@
+<?php
+session_start();
+include 'php/db_connect.php';
+
+// Check if the user is logged in
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: index.php');
+    exit;
+}
+
+// Get the logged-in admin user's type
+$admin_type = $_SESSION['type'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +22,15 @@
     <title>Document</title>
 </head>
 
-<body class="bg-blue-300 min-h-screen">
+<body class="bg-blue-400 min-h-screen">
     <main class="mx-auto w-11/12 max-w-7xl h-full pb-16">
         <div class="flex justify-between pt-24 mb-10">
-            <h1 class="text-pink font-display text-5xl" data-aos="fade-right">Admin</h1>
+            <h1 class="text-white font-display text-5xl">Admin</h1>
             <div class="flex gap-3">
-                <button class="p-3 bg-pink text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        href="add-user.php">ADD USER</a></button>
-                <button class="p-3 bg-pink text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        href="logout.php">LOG OUT</a></button>
+                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                        href="monitoring.php">Open Monitoring</a></button>
+                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                        href="logout.php">Next</a></button>
             </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg " data-aos="flip-up">
@@ -27,10 +41,13 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Queue Number
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Trans. Type
+                            Transaction Type
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Date
@@ -43,6 +60,41 @@
                         </th>
                     </tr>
                 </thead>
+
+                <?php
+                // $sql = "SELECT * FROM `customers`";
+                $sql = "SELECT * FROM `customers` WHERE type = '$admin_type'";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['id'];
+                        $queue_num = $row['queue_num'];
+                        $name = $row['name'];
+                        $type = $row['type'];
+                        $date = $row['date'];
+                        $duration = $row['duration'];
+                        echo '
+                        <tbody>
+                            <tr class="border-b font-light whitespace-nowrap text-white">
+                                <td class="px-6 py-4">' . $id . '</td>
+                                <td class="px-6 py-4">' . $queue_num . '</td>
+                                <td class="px-6 py-4">' . $name . '</td>
+                                <td class="px-6 py-4">' . $type . '</td>
+                                <td class="px-6 py-4">' . $date . '</td>
+                                <td class="px-6 py-4">' . $duration . '</td>
+                                <td class="px-6 py-4">
+                                    <button class="p-3 rounded-lg border shadow-sm">Edit</button>
+                                    <button class="p-3 rounded-lg border shadow-sm">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        ';
+                    }
+                }
+                ?>
+            </table>
+        </div>
     </main>
 </body>
 

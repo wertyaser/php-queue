@@ -58,12 +58,12 @@ $conn->close();
     <div class="bg-blue-400 p-5 rounded-lg my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 1</h1>
       <hr>
-      <p class="text-white font-mono font-bold my-16 text-5xl">W1-<?php echo $current_customer_number; ?></p>
+      <p class="text-white font-mono font-bold my-16 text-6xl">W1-<?php echo $current_customer_number; ?></p>
     </div>
     <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 2</h1>
       <hr>
-      <p class="text-white font-mono font-bold my-16 text-5xl">W2-<?php echo $current_customer_number; ?></p>
+      <p class="text-white font-mono font-bold my-16 text-6xl">W2-<?php echo $current_customer_number; ?></p>
     </div>
     <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
       <h1 class="text-2xl text-white font-semibold mb-5">Window 3</h1>
