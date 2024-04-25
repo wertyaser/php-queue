@@ -1,6 +1,8 @@
 <?php
-include ("php/db_connect.php");
 session_start();
+include ("db_connect.php");
+include 'function.php';
+
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //   // Check username and password against the database
@@ -29,24 +31,24 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $adminUser = $_POST['adminUser'];
   $adminPass = $_POST['adminPass'];
-
   if (!empty($adminUser) && !empty($adminPass)) {
-    $query = "select * from admin where user = '$adminUser' limit 1";
-    $result = mysqli_query($conn, $query);
+    $sqlAdmin = "SELECT * from admin WHERE user='$adminUser' AND password='$adminPass' ";
+    $adminResult = mysqli_query($conn, $sqlAdmin);
 
-    if ($result) {
-      $result = mysqli_query($conn, $query);
-      if ($result && mysqli_num_rows($result) > 0) {
-        $user_data = mysqli_fetch_assoc($result);
-        if ($user_data['password'] === $password) {
+    if ($adminResult) {
+      $adminResult = mysqli_query($conn, $sqlAdmin);
+      if ($adminResult && mysqli_num_rows($adminResult) > 0) {
+        $user_data = mysqli_fetch_assoc($adminResult);
+        if ($user_data['password'] === $adminPass) {
           $_SESSION['admin_id'] = $adminUser;
-          header("Location: home.php");
+          header("Location: admin.php");
         }
       }
     }
-    echo '<script type="text/javascript">alert("Wrong Email or Password") </script>';
+    // echo "You are not an admin.";
   }
 }
+
 ?>
 
 

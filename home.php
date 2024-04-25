@@ -1,7 +1,8 @@
 <?php
 // dashboard.php
-include ("php/db_connect.php");
 session_start();
+include ("db_connect.php");
+// var_dump($_POST);
 
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
+$window1 = "window1";
+$window2 = "window2";
+$window3 = "window3";
 // Close the database connection
 $conn->close();
 ?>
@@ -52,7 +56,7 @@ $conn->close();
 </head>
 
 <body>
-  <nav>
+  <!-- <nav>
     <ul>
       <li><strong>Buildnet</strong></li>
     </ul>
@@ -61,7 +65,7 @@ $conn->close();
       <li><a href="admin.php" class="contrast">Admin</a></li>
       <li><a href="logout.php" class="contrast">Logout</a></li>
     </ul>
-  </nav>
+  </nav> -->
 
 
   <div class="main-home">
@@ -73,10 +77,9 @@ $conn->close();
         <option selected disabled value="">
           Select your transaction type....
         </option>
-        <option>Window 1</option>
-        <option>Window 2</option>
-        <option>Window 3</option>
-        <option>Window 4</option>
+        <option value="<?php echo $window1; ?>">window1</option>
+        <option value="<?php echo $window2; ?>">window2</option>
+        <option value="<?php echo $window3; ?>">window3</option>
       </select>
       <button type="submit" name="generate_queue" id="generateQueueBtn">
         Generate Queue Number
@@ -90,24 +93,24 @@ $conn->close();
 
 </body>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("generateQueueBtn").addEventListener("click", function () {
-      var selectedType = document.querySelector("select[name='type']").value;
-      if (selectedType === "") {
-        alert("Please select a transaction type.");
-        return;
-      }
+  document.getElementById("generateQueueBtn").addEventListener("click", function () {
+    var selectedType = document.querySelector("select[name='type']").value;
+    if (selectedType === "") {
+      alert("Please select a transaction type.");
+      return;
+    }
 
-      // Generate random number (e.g., between 1000 and 9999)
-      var queueNumber = Math.floor(Math.random() * 9000) + 1000;
+    // Generate random number (e.g., between 1000 and 9999)
+    var queueNumber = Math.floor(Math.random() * 9000) + 1000;
 
-      // Set the generated queue number in the disabled input field
-      document.getElementById("queueNumberInput").value = queueNumber;
+    // Set the generated queue number in the input field
+    document.getElementById("queueNumberInput").value = queueNumber;
 
-      // Enable the input field before submitting the form
-      document.getElementById("queueNumberInput").disabled = false;
+    // Enable the input field before submitting the form
+    document.getElementById("queueNumberInput").disabled = false;
 
-    });
+    // Submit the form
+    document.querySelector("form").submit();
   });
 
 
