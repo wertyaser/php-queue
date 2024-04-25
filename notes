@@ -4,3 +4,13 @@ db structure
 queue_db
 -admin
 -customers
+
+
+///////// mga need pa ayusin
+monitoring
+queue generator (kailangan ng alert)
+
+
+//////optional
+filter sa admin 
+search sa admin

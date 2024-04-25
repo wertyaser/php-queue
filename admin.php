@@ -20,6 +20,14 @@ $admin_type = $_SESSION['type'];
 //     $type_counts[$row_count_by_type['type']] = $row_count_by_type['count'];
 // }
 
+if (isset($_POST["next_customer"])) {
+    // Update queue status for current and next customer
+    $sql_update_current = "UPDATE queue SET status='served' WHERE status='serving'";
+    $sql_update_next = "UPDATE queue SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
+    $conn->query($sql_update_current);
+    $conn->query($sql_update_next);
+}
+
 $sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$admin_type' AND DATE(date) = CURDATE()";
 $result_count_transactions = mysqli_query($conn, $sql_count_transactions);
 $row_count_transactions = mysqli_fetch_assoc($result_count_transactions);
