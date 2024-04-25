@@ -39,27 +39,28 @@ $total_transactions = $row_count_transactions['total_transactions'];
 
 <body class="bg-blue-400 min-h-screen">
     <main class="mx-auto w-11/12 max-w-7xl h-full pb-16">
+
         <div class="flex justify-between pt-24 mb-10">
             <h1 class="text-white font-display text-5xl">Admin</h1>
-            <h1>Total of Transactions(Today): <?php echo $total_transactions ?></h1>
             <div class="flex gap-3">
-                <!-- <h1>Total of Transactions(Today): </h1> -->
-
-                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="monitoring.php">Open Monitoring</a></button>
-                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="home.php">Queue Generator</a></button>
-                <button class="p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="logout.php">Logout</a></button>
                 <form action="" method="post">
-                    <button name="next_customer" class=" p-3 bg-yellow-400 text-white rounded-md border border-white font-md shadow-md
+                    <button name="next_customer" class=" p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md
                         px-6">Next</button>
                 </form>
             </div>
         </div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg " data-aos="flip-up">
-            <table class="w-full text-xl text-left ">
-                <thead class="text-xl text-white uppercase bg-pink ">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h1 class="text-xl text-blue-700 font-bold my-5 text-center">Total of Transactions(Today):
+                <?php echo $total_transactions ?>
+            </h1>
+            <table class="w-full text-xl text-left rounded-full">
+                <thead class="text-xl text-white uppercase bg-blue-600 ">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             ID
@@ -107,8 +108,8 @@ $total_transactions = $row_count_transactions['total_transactions'];
                                 <td class="px-6 py-4">' . $date . '</td>
                                 <td class="px-6 py-4">' . $duration . '</td>
                                 <td class="px-6 py-4">
-                                    <button class="p-3 rounded-lg border shadow-sm">Edit</button>
-                                    <button class="p-3 rounded-lg border shadow-sm">Delete</button>
+                                <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-customer.php?update_id=' . $id . '">Edit</a>
+                                <a class="p-2 bg-red-600 text-semibold rounded-lg border border-red-400 shadow" href="delete.php?delete_id=' . $id . '">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
