@@ -1,18 +1,9 @@
 <?php
 include 'db_connect.php';
 
-
-
-// Check if the "Next" button for Window 1 was clicked by admin1
-if (isset($_POST['next_window']) && $_POST['next_window'] == 'window1' && $admin_type == 'admin1') {
-    // Update the queue number for Window 1
-    $sql_update_window1 = "UPDATE queue SET queue_num = queue_num + 1 WHERE window = 'window1'";
-    $conn->query($sql_update_window1);
-}
-
 // Get current and next customer from the queue
-$sql_current = "SELECT * FROM queue WHERE status='serving' AND window = 'window1' LIMIT 1";
-$sql_next = "SELECT * FROM queue WHERE status='queued' AND window = 'window1' ORDER BY customer_id ASC LIMIT 1";
+$sql_current = "SELECT * FROM queue WHERE status='serving' LIMIT 1";
+$sql_next = "SELECT * FROM queue WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
 $result_current = $conn->query($sql_current);
 $result_next = $conn->query($sql_next);
 
@@ -20,14 +11,24 @@ $result_next = $conn->query($sql_next);
 $current_customer_number = "No customer";
 if ($result_current->num_rows > 0) {
     $current_customer = $result_current->fetch_assoc();
-    $current_customer_number = $current_customer["queue_num"];
+    $current_customer_id = $current_customer["customer_id"];
+    $sql_current_customer_number = "SELECT queue_num FROM customers WHERE id=$current_customer_id";
+    $result_current_customer_number = $conn->query($sql_current_customer_number);
+    if ($result_current_customer_number->num_rows > 0) {
+        $current_customer_number = $result_current_customer_number->fetch_assoc()["queue_num"];
+    }
 }
 
 // Fetch next customer's name
 $next_customer_number = "No customer";
 if ($result_next->num_rows > 0) {
     $next_customer = $result_next->fetch_assoc();
-    $next_customer_number = $next_customer["queue_num"];
+    $next_customer_id = $next_customer["customer_id"];
+    $sql_next_customer_number = "SELECT queue_num FROM customers WHERE id=$next_customer_id";
+    $result_next_customer_number = $conn->query($sql_next_customer_number);
+    if ($result_next_customer_number->num_rows > 0) {
+        $next_customer_number = $result_next_customer_number->fetch_assoc()["queue_num"];
+    }
 }
 
 // Close the database connection
