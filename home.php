@@ -27,8 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $queue_number = $max_queue_number + 1;
 
         // Add customer to queue table
-        $sql_insert_queue = "INSERT INTO queue (customer_id, queue_number, status) VALUES ($customer_id, $queue_number, 'queued')";
-        $conn->query($sql_insert_queue);
+        // $sql_insert_queue = "INSERT INTO queue (customer_id, queue_number, status, type) VALUES ($customer_id, $queue_number, 'queued')";
+        // $conn->query($sql_insert_queue);
+
+        //new 
+        $sql_insert_queue = "INSERT INTO queue (customer_id, queue_number, status, type) VALUES (?, ?, 'queued', ?)";
+        $stmt_insert_queue = $conn->prepare($sql_insert_queue);
+        $stmt_insert_queue->bind_param("iis", $customer_id, $queue_number, $transaction);
+        $stmt_insert_queue->execute();
+        //new ^
 
         echo "Random number saved successfully!";
     } else {
@@ -37,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+    $stmt_insert_queue->close(); //new
     // Do not close the connection here
 } else {
     // If the request is not a POST request, send an error response (optional)
@@ -84,7 +92,7 @@ $conn->close();
 <script>
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
-        const randomNumber = Math.floor(Math.random() * 1000) + 1;
+        const randomNumber = Math.floor(Math.random() * 9000) + 1000;
 
         // Save to database using AJAX
         $.ajax({

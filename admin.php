@@ -6,20 +6,6 @@ check_login($conn);
 $admin_data = check_login($conn);
 $admin_type = $_SESSION['type'];
 
-
-// // Get the current date
-// $current_date = date("Y-m-d");
-
-// // SQL query to count transactions by type for the current date
-// $sql_count_by_type = "SELECT type, COUNT(*) AS count FROM `customers` WHERE date = '$current_date' GROUP BY type";
-// $result_count_by_type = mysqli_query($conn, $sql_count_by_type);
-
-// // Store the counts in an associative array
-// $type_counts = array();
-// while ($row_count_by_type = mysqli_fetch_assoc($result_count_by_type)) {
-//     $type_counts[$row_count_by_type['type']] = $row_count_by_type['count'];
-// }
-
 if (isset($_POST["next_customer"])) {
     // Update queue status for current and next customer
     $sql_update_current = "UPDATE queue SET status='served' WHERE status='serving'";
@@ -52,14 +38,14 @@ $total_transactions = $row_count_transactions['total_transactions'];
             <h1 class="text-white font-display text-5xl">Admin</h1>
             <div class="flex gap-3">
                 <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        href="monitoring.php">Open Monitoring</a></button>
+                        href="monitor.php">Open Monitoring</a></button>
                 <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="home.php">Queue Generator</a></button>
                 <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="logout.php">Logout</a></button>
                 <form action="" method="post">
                     <button name="next_customer" class=" p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md
-                        px-6">Next</button>
+                            px-6">Next</button>
                 </form>
             </div>
         </div>
@@ -108,20 +94,20 @@ $total_transactions = $row_count_transactions['total_transactions'];
                         $duration = $row['duration'];
                         echo '
                         <tbody>
-                            <tr class="border-b font-light whitespace-nowrap text-white">
-                                <td class="px-6 py-4">' . $id . '</td>
-                                <td class="px-6 py-4">' . $queue_num . '</td>
-                                <td class="px-6 py-4">' . $name . '</td>
-                                <td class="px-6 py-4">' . $type . '</td>
-                                <td class="px-6 py-4">' . $date . '</td>
-                                <td class="px-6 py-4">' . $duration . '</td>
-                                <td class="px-6 py-4">
-                                <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-customer.php?update_id=' . $id . '">Edit</a>
+                        <tr class="border-b font-light whitespace-nowrap text-white">
+                        <td class="px-6 py-4">' . $id . '</td>
+                        <td class="px-6 py-4">' . $queue_num . '</td>
+                        <td class="px-6 py-4">' . $name . '</td>
+                        <td class="px-6 py-4">' . $type . '</td>
+                        <td class="px-6 py-4">' . $date . '</td>
+                        <td class="px-6 py-4">' . $duration . '</td>
+                        <td class="px-6 py-4">
+                        <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-customer.php?update_id=' . $id . '">Edit</a>
                                 <a class="p-2 bg-red-600 text-semibold rounded-lg border border-red-400 shadow" href="delete.php?delete_id=' . $id . '">Delete</a>
                                 </td>
-                            </tr>
-                        </tbody>
-                        ';
+                                </tr>
+                                </tbody>
+                                ';
                     }
                 }
                 ?>
@@ -131,3 +117,17 @@ $total_transactions = $row_count_transactions['total_transactions'];
 </body>
 
 </html>
+
+<!-- 
+// // Get the current date
+// $current_date = date("Y-m-d");
+
+// // SQL query to count transactions by type for the current date
+// $sql_count_by_type = "SELECT type, COUNT(*) AS count FROM `customers` WHERE date = '$current_date' GROUP BY type";
+// $result_count_by_type = mysqli_query($conn, $sql_count_by_type);
+
+// // Store the counts in an associative array
+// $type_counts = array();
+// while ($row_count_by_type = mysqli_fetch_assoc($result_count_by_type)) {
+// $type_counts[$row_count_by_type['type']] = $row_count_by_type['count'];
+// } -->
