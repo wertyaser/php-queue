@@ -11,7 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO customers (type, queue_num) VALUES (?,?)";
     $stmt = $conn->prepare($sql);
-    if ($transaction === 'window1' || $transaction === 'window2' || $transaction === 'window3') {
+
+    //queue for window 1
+    if ($transaction === 'window1') {
         // Bind parameters with string data type
         $stmt->bind_param("si", $transaction, $randomNumber);
         $stmt->execute();
@@ -38,19 +40,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //new ^
 
         echo "Random number saved successfully!";
+
+        //for windows 2
+    } elseif ($transaction === 'window2') {
+        // Bind parameters with string data type
+        $stmt->bind_param("si", $transaction, $randomNumber);
+        $stmt->execute();
+
+        // Get the customer_id of the inserted customer
+        $customer_id = $conn->insert_id;
+
+        // Get the current maximum queue number and increment it
+        $sql_max_queue_number = "SELECT MAX(queue_number) AS max_queue_number FROM queue2";
+        $result_max_queue_number = $conn->query($sql_max_queue_number);
+        $row_max_queue_number = $result_max_queue_number->fetch_assoc();
+        $max_queue_number = $row_max_queue_number["max_queue_number"];
+        $queue_number = $max_queue_number + 1;
+
+        //new 
+        $sql_insert_queue = "INSERT INTO queue2 (customer_id, queue_number, status, type) VALUES (?, ?, 'queued', ?)";
+        $stmt_insert_queue = $conn->prepare($sql_insert_queue);
+        $stmt_insert_queue->bind_param("iis", $customer_id, $queue_number, $transaction);
+        $stmt_insert_queue->execute();
+        //new ^
+
+        echo "Random number saved successfully!";
+    } elseif ($transaction === 'window3') {
+        // Bind parameters with string data type
+        $stmt->bind_param("si", $transaction, $randomNumber);
+        $stmt->execute();
+
+        // Get the customer_id of the inserted customer
+        $customer_id = $conn->insert_id;
+
+        // Get the current maximum queue number and increment it
+        $sql_max_queue_number = "SELECT MAX(queue_number) AS max_queue_number FROM queue3";
+        $result_max_queue_number = $conn->query($sql_max_queue_number);
+        $row_max_queue_number = $result_max_queue_number->fetch_assoc();
+        $max_queue_number = $row_max_queue_number["max_queue_number"];
+        $queue_number = $max_queue_number + 1;
+
+        //new 
+        $sql_insert_queue = "INSERT INTO queue3 (customer_id, queue_number, status, type) VALUES (?, ?, 'queued', ?)";
+        $stmt_insert_queue = $conn->prepare($sql_insert_queue);
+        $stmt_insert_queue->bind_param("iis", $customer_id, $queue_number, $transaction);
+        $stmt_insert_queue->execute();
+        //new ^
+
+        echo "Random number saved successfully!";
     } else {
         // Handle invalid transaction value
         echo "Invalid transaction value.";
     }
-
     $stmt->close();
     $stmt_insert_queue->close(); //new
     // Do not close the connection here
-} else {
-    // If the request is not a POST request, send an error response (optional)
-    http_response_code(405);
-    // echo "Method Not Allowed";
+
 }
+
+//for windows3
+
 
 $conn->close();
 ?>

@@ -15,18 +15,6 @@ if ($result_current->num_rows > 0) {
     }
 }
 
-// Fetch next customer's queue number
-// $sql_next = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 1";
-// $result_next = $conn->query($sql_next);
-// $next_customer_number = "No customer";
-// if ($result_next->num_rows > 0) {
-//     $next_customer_id = $result_next->fetch_assoc()["customer_id"];
-//     $sql_next_customer_number = "SELECT queue_num FROM customers WHERE id=$next_customer_id";
-//     $result_next_customer_number = $conn->query($sql_next_customer_number);
-//     if ($result_next_customer_number->num_rows > 0) {
-//         $next_customer_number = $result_next_customer_number->fetch_assoc()["queue_num"];
-//     }
-// }
 $sql_queued = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC";
 $result_queued = $conn->query($sql_queued);
 $queued_customers = [];
@@ -71,14 +59,6 @@ if ($result_queued->num_rows > 0) {
                 <p class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></p>
             <?php } ?>
         </div>
-
-    </div>
-
-
-
-
-
-
     </div>
 </body>
 <script>
@@ -96,3 +76,17 @@ if ($result_queued->num_rows > 0) {
 </script>
 
 </html>
+
+<!-- 
+// Fetch next customer's queue number
+// $sql_next = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 1";
+// $result_next = $conn->query($sql_next);
+// $next_customer_number = "No customer";
+// if ($result_next->num_rows > 0) {
+//     $next_customer_id = $result_next->fetch_assoc()["customer_id"];
+//     $sql_next_customer_number = "SELECT queue_num FROM customers WHERE id=$next_customer_id";
+//     $result_next_customer_number = $conn->query($sql_next_customer_number);
+//     if ($result_next_customer_number->num_rows > 0) {
+//         $next_customer_number = $result_next_customer_number->fetch_assoc()["queue_num"];
+//     }
+// } -->

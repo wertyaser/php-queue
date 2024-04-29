@@ -6,13 +6,38 @@ check_login($conn);
 $admin_data = check_login($conn);
 $admin_type = $_SESSION['type'];
 
-if (isset($_POST["next_customer"])) {
+$button_name = 'next_customer';
+if ($admin_type === 'window1') {
+    $button_name .= '1';
+} elseif ($admin_type === 'window2') {
+    $button_name .= '2';
+} elseif ($admin_type === 'window3') {
+    $button_name .= '3';
+}
+
+if (isset($_POST["next_customer1"])) {
     // Update queue status for current and next customer
     $sql_update_current = "UPDATE queue SET status='served' WHERE status='serving'";
     $sql_update_next = "UPDATE queue SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
     $conn->query($sql_update_current);
     $conn->query($sql_update_next);
 }
+
+if (isset($_POST["next_customer2"])) {
+    // Update queue status for current and next customer
+    $sql_update_current = "UPDATE queue2 SET status='served' WHERE status='serving'";
+    $sql_update_next = "UPDATE queue2 SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
+    $conn->query($sql_update_current);
+    $conn->query($sql_update_next);
+}
+if (isset($_POST["next_customer3"])) {
+    // Update queue status for current and next customer
+    $sql_update_current = "UPDATE queue3 SET status='served' WHERE status='serving'";
+    $sql_update_next = "UPDATE queue3 SET status='serving' WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
+    $conn->query($sql_update_current);
+    $conn->query($sql_update_next);
+}
+
 
 $sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$admin_type' AND DATE(date) = CURDATE()";
 $result_count_transactions = mysqli_query($conn, $sql_count_transactions);
@@ -44,7 +69,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
                 <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
                         href="logout.php">Logout</a></button>
                 <form action="" method="post">
-                    <button name="next_customer" class=" p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md
+                    <button name="<?php echo $button_name; ?>" class=" p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md
                             px-6">Next</button>
                 </form>
             </div>
