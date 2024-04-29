@@ -12,5 +12,86 @@ queue generator (kailangan ng alert)
 
 
 //////optional
-filter sa admin 
+filter sa admin
 search sa admin
+
+
+<?php
+include 'db_connect.php';
+
+// Get all customers on queued status
+$sql_queued_customers = "SELECT customers.queue_num FROM customers INNER JOIN queue ON customers.id = queue.customer_id WHERE queue.status = 'queued'";
+$result_queued_customers = $conn->query($sql_queued_customers);
+
+// Fetch all queued customers' numbers
+$queued_customers_numbers = [];
+if ($result_queued_customers->num_rows > 0) {
+    while ($row = $result_queued_customers->fetch_assoc()) {
+        $queued_customers_numbers[] = $row["queue_num"];
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/output.css" />
+    <!-- <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" /> -->
+    <title>Queue Monitoring</title>
+</head>
+
+<body class="bg-blue-300">
+    <div class="text-center">
+        <marquee scrollamount="20" direction="left" width="80%">
+            <h1 class="text-2xl text-white">BUILDNET CONSTRUCTION INC. BUILDNET CONSTRUCTION INC. BUILDNET CONSTRUCTION
+                INC.
+            </h1>
+        </marquee>
+        <h1 class="text-5xl font-bold my-5 text-white">MONITORING</h1>
+    </div>
+    <div class="grid grid-cols-3 gap-4 justify-center text-center rounded-t-lg shadow ">
+        <div class="bg-blue-400 p-5 rounded-lg my-5">
+            <h1 class="text-2xl text-white font-semibold mb-5">Window 1</h1>
+            <hr>
+            <?php foreach ($queued_customers_numbers as $queued_customer_number): ?>
+                <p class="text-white font-mono font-bold my-16 text-6xl">W1-<?php echo $queued_customer_number; ?></p>
+            <?php endforeach; ?>
+        </div>
+        <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
+            <h1 class="text-2xl text-white font-semibold mb-5">Window 2</h1>
+            <hr>
+            <?php foreach ($queued_customers_numbers as $queued_customer_number): ?>
+                <p class="text-white font-mono font-bold my-16 text-6xl">W2-<?php echo $queued_customer_number; ?></p>
+            <?php endforeach; ?>
+        </div>
+        <div class="bg-blue-400 p-5 rounded-lg min-h-52 my-5">
+            <h1 class="text-2xl text-white font-semibold mb-5">Window 3</h1>
+            <hr>
+            <?php foreach ($queued_customers_numbers as $queued_customer_number): ?>
+                <p class="text-white font-mono font-bold my-16 text-6xl">W3-<?php echo $queued_customer_number; ?></p>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Function to reload the page every 5 seconds
+    function reloadPage() {
+        setTimeout(function () {
+            location.reload();
+        }, 5000); // 3000 milliseconds = 5 seconds
+    }
+
+    // Call the reloadPage function when the page loads
+    window.onload = function () {
+        reloadPage();
+    };
+</script>
+
+</html>
