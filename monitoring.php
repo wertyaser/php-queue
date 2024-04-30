@@ -15,7 +15,7 @@ if ($result_current1->num_rows > 0) {
     }
 }
 
-$sql_queued1 = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC";
+$sql_queued1 = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
 $result_queued1 = $conn->query($sql_queued1);
 $queued_customers1 = [];
 if ($result_queued1->num_rows > 0) {
@@ -44,7 +44,7 @@ if ($result_current2->num_rows > 0) {
     }
 }
 
-$sql_queued2 = "SELECT customer_id FROM queue2 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC";
+$sql_queued2 = "SELECT customer_id FROM queue2 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
 $result_queued2 = $conn->query($sql_queued2);
 $queued_customers2 = [];
 if ($result_queued2->num_rows > 0) {
@@ -73,7 +73,7 @@ if ($result_current3->num_rows > 0) {
     }
 }
 
-$sql_queued3 = "SELECT customer_id FROM queue3 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC";
+$sql_queued3 = "SELECT customer_id FROM queue3 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
 $result_queued3 = $conn->query($sql_queued3);
 $queued_customers3 = [];
 if ($result_queued3->num_rows > 0) {
@@ -100,8 +100,8 @@ if ($result_queued3->num_rows > 0) {
 
 </head>
 
-<body class="bg-blue-400 ">
-    <main class="grid grid-cols-2 gap-3">
+<body class="bg-blue-400 min-h-screen">
+    <main class="grid grid-cols-2">
         <div class="1">
             <div class="my-5 bg-yellow-500 p-5 mx-10">
                 <h1 class="text-center font-semibold text-white text-7xl">WINDOW 1</h1>
