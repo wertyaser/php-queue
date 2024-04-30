@@ -14,9 +14,7 @@ if (isset($_GET['update_id'])) {
 
     if (isset($_POST['submit'])) {
       $name = mysqli_real_escape_string($conn, $_POST['name']);
-      $queue_num = mysqli_real_escape_string($conn, $_POST['queue_num']);
-      $date = mysqli_real_escape_string($conn, $_POST['date']);
-      $time_end = mysqli_real_escape_string($conn, $_POST['time_end']);
+      $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
 
       $update_sql = "UPDATE customers SET name='$name', remarks='$remarks' WHERE id='$id'";
       $update_result = mysqli_query($conn, $update_sql);
