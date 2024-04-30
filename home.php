@@ -151,7 +151,7 @@ $conn->close();
             success: function (response) {
                 // Show SweetAlert
                 swal({
-                    title: 'Random Number Generated',
+                    title: 'Queue Number Generated',
                     text: 'Transaction: ' + transaction + '\nQueue Number: ' + randomNumber,
                     icon: 'success',
                     button: 'OK'
