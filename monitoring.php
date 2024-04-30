@@ -174,7 +174,7 @@ if ($result_queued3->num_rows > 0) {
     function reloadPage() {
         setTimeout(function () {
             location.reload();
-        }, 5000); // 3000 milliseconds = 5 seconds
+        }, 3000); // 3000 milliseconds = 5 seconds
     }
 
     // Call the reloadPage function when the page loads

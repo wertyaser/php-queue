@@ -10,9 +10,7 @@ if (isset($_GET['update_id'])) {
   if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $name = $row['name'];
-    $queue_num = $row['queue_num'];
-    $date = $row['date'];
-    $time_end = $row['time_end'];
+    $remarks = $row['remarks'];
 
     if (isset($_POST['submit'])) {
       $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -20,7 +18,7 @@ if (isset($_GET['update_id'])) {
       $date = mysqli_real_escape_string($conn, $_POST['date']);
       $time_end = mysqli_real_escape_string($conn, $_POST['time_end']);
 
-      $update_sql = "UPDATE customers SET name='$name', queue_num='$queue_num', date='$date', time_end='$time_end' WHERE id='$id'";
+      $update_sql = "UPDATE customers SET name='$name', remarks='$remarks' WHERE id='$id'";
       $update_result = mysqli_query($conn, $update_sql);
 
       if ($update_result) {
@@ -64,21 +62,12 @@ if (isset($_GET['update_id'])) {
       Edit Information:
     </h1>
     <form method="post" class="max-w-2xl mx-auto w-full mt-12">
-      <?php if (isset($error)) { ?>
-        <p class="error">
-          <?php echo $error; ?>
-        </p>
-      <?php } ?>
       <div class="flex items-center gap-2 mb-3">
         <input type="text" id="name" name="name" value="<?php echo $name ?>" required
           class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full" placeholder="Name" />
-        <input type="date" id="date" name="date" value="<?php echo $date ?>"
-          class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full" placeholder="Date" />
       </div>
-      <input type="text" id="queue_num" name="queue_num" value="<?php echo $queue_num ?>"
-        class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full" placeholder="Queue Number" />
-      <input type="time" id="time_end" name="time_end" value="<?php echo $time_end ?>"
-        class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full" placeholder="Time End" />
+      <textarea placeholder="Remarks...." class="w-full mb-6 p-3" name="remarks" id="remarks" cols="30" rows="10"
+        value="<?php echo $remarks ?>"></textarea>
       <div class="flex items-center gap-2">
         <button type="button" onClick="handleClearFields()"
           class="px-6 py-4 rounded-md border border-white hover:bg-white/[.5] transition-all">
