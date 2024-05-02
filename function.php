@@ -1,5 +1,5 @@
 <?php
-
+// $cashier_id = $_SESSION['cashier_id'];
 function check_login($conn)
 {
     if (isset($_SESSION['admin_id'])) {

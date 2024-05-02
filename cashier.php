@@ -6,6 +6,7 @@ check_cashier($conn);
 $cashier_data = check_cashier($conn);
 $cashier_type = $_SESSION['type'];
 
+
 $button_name = 'next_customer';
 if ($cashier_type === 'window1') {
     $button_name .= '1';
@@ -65,12 +66,14 @@ $total_transactions = $row_count_transactions['total_transactions'];
         <div class="flex justify-between pt-24 mb-10">
             <h1 class="text-white font-display text-5xl">Cashier Dashboard</h1>
             <div class="flex gap-3">
-                <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
-                        href="logout.php">Logout</a></button>
                 <form action="" method="post">
                     <button name="<?php echo $button_name; ?>" class=" p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md
                             px-6">Next</button>
                 </form>
+                <a class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"
+                    href="cashier-data.php">Export to Excel</a>
+                <button class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"><a
+                        href="logout.php">Logout</a></button>
             </div>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
