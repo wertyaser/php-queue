@@ -162,7 +162,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
             <td class="px-6 py-4">' . $time_end . '</td>
             <td class="px-6 py-4">' . $remarks . '</td>
             <td class="px-6 py-4">
-                <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-customer.php?update_id=' . $id . '">Edit</a>
+                <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-admin.php?update_id=' . $id . '">Edit</a>
                 <a class="p-2 bg-red-600 text-semibold rounded-lg border border-red-400 shadow" href="delete.php?delete_id=' . $id . '">Delete</a>
                 </td>
         </tr>';

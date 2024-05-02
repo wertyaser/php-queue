@@ -2,6 +2,7 @@
 session_start();
 include ("db_connect.php");
 
+
 if (isset($_GET['update_id'])) {
   $id = mysqli_real_escape_string($conn, $_GET['update_id']);
   $sql = "SELECT * FROM customers WHERE id='$id'";
@@ -20,7 +21,7 @@ if (isset($_GET['update_id'])) {
       $update_result = mysqli_query($conn, $update_sql);
 
       if ($update_result) {
-        header('Location: admin.php');
+        header("Location: admin.php");
         exit();
       } else {
         $error = "Error updating record: " . mysqli_error($conn);
