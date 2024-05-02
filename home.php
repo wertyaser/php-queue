@@ -8,14 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $transaction = $_POST["transaction"];
     $randomNumber = $_POST["random_number"];
+    $customerName = $_POST["customer_name"];
 
-    $sql = "INSERT INTO customers (type, queue_num) VALUES (?,?)";
+    $sql = "INSERT INTO customers (name, type, queue_num) VALUES (?,?,?)";
     $stmt = $conn->prepare($sql);
 
     //queue for window 1
     if ($transaction === 'window1') {
         // Bind parameters with string data type
-        $stmt->bind_param("si", $transaction, $randomNumber);
+        $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
         $stmt->execute();
 
         // Get the customer_id of the inserted customer
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //for windows 2
     } elseif ($transaction === 'window2') {
         // Bind parameters with string data type
-        $stmt->bind_param("si", $transaction, $randomNumber);
+        $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
         $stmt->execute();
 
         // Get the customer_id of the inserted customer
@@ -67,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Random number saved successfully!";
     } elseif ($transaction === 'window3') {
         // Bind parameters with string data type
-        $stmt->bind_param("si", $transaction, $randomNumber);
+        $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
         $stmt->execute();
 
         // Get the customer_id of the inserted customer
@@ -123,6 +124,7 @@ $conn->close();
     <div class="main-home">
         <h1 class="title">Queuing System</h1>
         <form id="transactionForm">
+            <input type="text" id="customer_name" name="customer_name" placeholder="Name" required>
             <select id="transaction" name="transaction" required>
                 <option value="window1">Transaction 1</option>
                 <option value="window2">Transaction 2</option>
@@ -141,18 +143,19 @@ $conn->close();
 <script>
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
+        const customerName = document.getElementById('customer_name').value;
         const randomNumber = Math.floor(Math.random() * 9000) + 1000;
 
         // Save to database using AJAX
         $.ajax({
             type: 'POST',
             url: 'home.php',
-            data: { transaction: transaction, random_number: randomNumber },
+            data: { transaction: transaction, random_number: randomNumber, customer_name: customerName },
             success: function (response) {
                 // Show SweetAlert
                 swal({
-                    title: 'Queue Number Generated',
-                    text: 'Transaction: ' + transaction + '\nQueue Number: ' + randomNumber,
+                    title: 'Your Queue Number: ' + randomNumber,
+                    text: 'Please go to the ' + transaction,
                     icon: 'success',
                     button: 'OK'
                 });
