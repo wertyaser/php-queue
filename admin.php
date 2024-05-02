@@ -66,7 +66,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
             <h1 class="text-white font-display text-5xl">Admin Dashboard</h1>
             <div class="flex gap-3">
                 <a class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"
-                    href="data.php">Export to Excel</a>
+                    href="admin-data.php">Export to Excel</a>
                 <a class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"
                     href="monitoring.php" target="_blank">Open Monitoring</a>
                 <a class="p-3 bg-blue-600 text-white rounded-md border border-white font-md shadow-md px-6"

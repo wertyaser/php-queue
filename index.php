@@ -68,12 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <form action="" method="post" class="mt-3">
         <div class="mt-5">
           <label class="block" for="user">Enter Username</label>
-          <input class="border rounded-md w-full p-2 mt-2 focus:border-blue-400" type="text" name="user"
+          <input class="border rounded-md w-full p-3 mt-2 focus:border-blue-400" type="text" name="user"
             placeholder="Username" />
         </div>
         <div class="mt-3">
           <label class="block" for="pass">Enter Password</label>
-          <input class="border rounded-md w-full p-2 mt-2 focus:border-blue-400" type="password" name="pass"
+          <input class="border rounded-md w-full p-3 mt-2 focus:border-blue-400" type="password" name="pass"
             placeholder="Password" />
         </div>
         <button class="mt-3 p-3 text-xl w-full bg-blue-500 border border-blue-400 text-white rounded-lg"
