@@ -17,9 +17,9 @@ function check_login($conn)
 }
 function check_cashier($conn)
 {
-    if (isset($_SESSION['admin_id'])) {
-        $id = $_SESSION['admin_id'];
-        $query = "select * from admin where user = '$id' limit 1";
+    if (isset($_SESSION['cashier_id'])) {
+        $id = $_SESSION['cashier_id'];
+        $query = "select * from cashier where user = '$id' limit 1";
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             $user_data = mysqli_fetch_assoc($result);

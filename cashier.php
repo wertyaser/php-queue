@@ -2,16 +2,16 @@
 session_start();
 include ("db_connect.php");
 include ("function.php");
-check_login($conn);
-$admin_data = check_login($conn);
-$admin_type = $_SESSION['type'];
+check_cashier($conn);
+$cashier_data = check_cashier($conn);
+$cashier_type = $_SESSION['type'];
 
 $button_name = 'next_customer';
-if ($admin_type === 'window1') {
+if ($cashier_type === 'window1') {
     $button_name .= '1';
-} elseif ($admin_type === 'window2') {
+} elseif ($cashier_type === 'window2') {
     $button_name .= '2';
-} elseif ($admin_type === 'window3') {
+} elseif ($cashier_type === 'window3') {
     $button_name .= '3';
 }
 
@@ -42,7 +42,7 @@ if (isset($_POST["next_customer3"])) {
 }
 
 
-$sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$admin_type' AND DATE(date) = CURDATE()";
+$sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$cashier_type' AND DATE(date) = CURDATE()";
 $result_count_transactions = mysqli_query($conn, $sql_count_transactions);
 $row_count_transactions = mysqli_fetch_assoc($result_count_transactions);
 $total_transactions = $row_count_transactions['total_transactions'];
@@ -117,7 +117,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
         LEFT JOIN `queue` q ON c.id = q.customer_id
         LEFT JOIN `queue2` q2 ON c.id = q2.customer_id
         LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
-        WHERE c.type = '$admin_type'";
+        WHERE c.type = '$cashier_type'";
 
                     $result = mysqli_query($conn, $sql);
 
