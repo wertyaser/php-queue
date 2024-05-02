@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
       }
     }
-    // echo "You are not an admin.";
+    echo '<script type="text/javascript">alert("Wrong Email or Password") </script>';
   }
 }
 
