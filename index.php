@@ -55,19 +55,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" />
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/output.css">
   <title>Queuing System</title>
 </head>
 
 <body>
-  <div class="main">
-    <h1 class="title">Admin Sign in</h1>
-    <form action="" method="post" class="">
-      <input type="text" name="user" placeholder="Username" />
-      <input type="password" name="pass" placeholder="Password" />
-      <button type="submit">Submit</button>
-    </form>
+
+  <div class="flex justify-center items-center h-screen">
+    <div class="w-6/12 p-5 shadow-xl bg-white rounded-md border">
+      <img class="mx-auto" src="assets/logo.png" alt="Buildnet Logo">
+      <!-- <h1 class="text-center text-2xl ">LOGIN</h1> -->
+      <form action="" method="post" class="mt-3">
+        <div class="mt-5">
+          <label class="block" for="user">Enter Username</label>
+          <input class="border rounded-md w-full p-2 mt-2 focus:border-blue-400" type="text" name="user"
+            placeholder="Username" />
+        </div>
+        <div class="mt-3">
+          <label class="block" for="pass">Enter Password</label>
+          <input class="border rounded-md w-full p-2 mt-2 focus:border-blue-400" type="password" name="pass"
+            placeholder="Password" />
+        </div>
+        <button class="mt-3 p-3 text-xl w-full bg-blue-500 border border-blue-400 text-white rounded-lg"
+          type="submit">Submit</button>
+      </form>
+    </div>
+
   </div>
 </body>
 
