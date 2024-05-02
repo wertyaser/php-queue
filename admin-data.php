@@ -12,7 +12,7 @@ $row_count_transactions = mysqli_fetch_assoc($result_count_transactions);
 $total_transactions = $row_count_transactions['total_transactions'];
 
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment; filename="cashier_report.xls"');
+header('Content-Disposition: attachment; filename="admin_report.xls"');
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +55,9 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
                         </th>
                         <th scope="col">
                             End
+                        </th>
+                        <th scope="col">
+                            Duration
                         </th>
                         <th scope="col">
                             Remarks
@@ -100,6 +103,14 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
                                 $time_end = $row['q3_time_end'];
                             }
 
+                            $duration = '';
+                            if ($time_start !== '' && $time_end !== '') {
+                                $start = strtotime($time_start);
+                                $end = strtotime($time_end);
+                                $duration_seconds = $end - $start;
+                                $duration = gmdate("H:i:s", $duration_seconds); // Format as HH:MM:SS
+                            }
+
                             echo '
                    
         <tr>
@@ -110,6 +121,7 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
             <td>' . $date . '</td>
             <td>' . $time_start . '</td>
             <td>' . $time_end . '</td>
+            <td>' . $duration . '</td>
             <td>' . $remarks . '</td>
            
         </tr>';
