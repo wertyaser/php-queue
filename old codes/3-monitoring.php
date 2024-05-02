@@ -100,13 +100,13 @@ if ($result_current3->num_rows > 0) {
 
 </head>
 
-<body class="bg-blue-400 h-screen">
-    <main class="grid grid-rows-1 mx-auto">
+<body class="bg-blue-400 min-h-screen">
+    <main class="grid grid-cols-2">
         <div class="1">
-            <div class="my-5 bg-yellow-500 p-5">
+            <div class="my-5 bg-yellow-500 p-5 mx-10">
                 <h1 class="text-center font-semibold text-white text-7xl">WINDOW 1</h1>
             </div>
-            <div class="grid grid-rows-4 grid-flow-col gap-4 my-5">
+            <div class="grid grid-rows-4 grid-flow-col gap-4 my-5 mx-10">
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">NOW SERVING</h1>
                     <hr class="my-5">
@@ -123,13 +123,11 @@ if ($result_current3->num_rows > 0) {
                 </div>
             </div>
         </div>
-
-
         <div class="2">
-            <div class="my-5 bg-yellow-500 p-5">
+            <div class="my-5 bg-yellow-500 p-5 mx-10">
                 <h1 class="text-center font-semibold text-white text-7xl">WINDOW 2</h1>
             </div>
-            <div class="grid grid-rows-4 grid-flow-col gap-4 my-5">
+            <div class="grid grid-rows-4 grid-flow-col gap-4 my-5 mx-10">
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">NOW SERVING</h1>
                     <hr class="my-5">
@@ -144,6 +142,28 @@ if ($result_current3->num_rows > 0) {
                         <p class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></p>
                     <?php } ?>
                 </div>
+            </div>
+        </div>
+        <div class="col-span-2">
+            <div class="my-5 bg-yellow-500 p-5 mx-10">
+                <h1 class="text-center font-semibold text-white text-7xl">WINDOW 3</h1>
+            </div>
+            <div class="grid grid-rows-4 grid-flow-col gap-4 my-5 mx-10">
+                <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
+                    <h1 class="text-center text-white font-semibold text-6xl">NOW SERVING</h1>
+                    <hr class="my-5">
+                    <p class="text-center text-white text-semibold text-8xl my-5">
+                        <?php echo $current_customer_number3; ?>
+                    </p>
+                </div>
+                <div class="row-span-4 bg-blue-500 p-5 rounded-lg">
+                    <h1 class="text-center text-white font-semibold text-6xl">WAITING</h1>
+                    <hr class="my-5">
+                    <?php foreach ($queued_customers3 as $queued_customer) { ?>
+                        <p class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></p>
+                    <?php } ?>
+                </div>
+
             </div>
         </div>
     </main>

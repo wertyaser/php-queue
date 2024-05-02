@@ -79,5 +79,17 @@ if (isset($_GET['update_id'])) {
     </form>
   </main>
 </body>
+<script>
+  function handleClearFields() {
+    // console.log("run");
+    const inputs = document.querySelectorAll("input");
+    // console.log(inputs);
+    inputs.forEach((input) => (input.value = ""));
+  }
+
+  function handleBackButton() {
+    window.history.back();
+  }
+</script>
 
 </html>
