@@ -3,34 +3,31 @@ session_start();
 include ("db_connect.php");
 include 'function.php';
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  $cashierUser = $_POST['user'];
+  $cashierPass = $_POST['pass'];
+  if (!empty($cashierUser) && !empty($cashierPass)) {
+    $sqlCashier = "SELECT * from cashier WHERE user='$cashierUser' AND password='$cashierPass' ";
+    $result = mysqli_query($conn, $sqlCashier);
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//   // Check username and password against the database
-//   $username = $_POST["username"];
-//   $password = $_POST["password"];
-
-//   $sql = "SELECT * FROM admin WHERE user='$username' AND password='$password'";
-//   $result = $conn->query($sql);
-
-//   if ($result->num_rows == 1) {
-//     // $_SESSION["username"] = $username;
-//     // header("Location: home.php");
-//     $row = $result->fetch_assoc();
-//     $_SESSION["username"] = $username;
-//     $_SESSION["admin_id"] = $row["id"];
-//     $_SESSION["type"] = $row["type"];
-//     header("Location: home.php");
-//     exit();
-//   } else {
-//     echo '<script type="text/javascript">alert("Wrong Email or Password") </script>';
-//   }
-
-// }
+    if ($result) {
+      $result = mysqli_query($conn, $sqlCashier);
+      if ($result && mysqli_num_rows($result) > 0) {
+        $user_data = mysqli_fetch_assoc($result);
+        if ($user_data['password'] === $cashierPass) {
+          $_SESSION['cashier_id'] = $cashierUser;
+          header("Location: cashier.php");
+        }
+      }
+    }
+    echo '<script type="text/javascript">alert("Wrong Email or Password") </script>';
+  }
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $adminUser = $_POST['adminUser'];
-  $adminPass = $_POST['adminPass'];
+  $adminUser = $_POST['user'];
+  $adminPass = $_POST['pass'];
   if (!empty($adminUser) && !empty($adminPass)) {
     $sqlAdmin = "SELECT * from admin WHERE user='$adminUser' AND password='$adminPass' ";
     $adminResult = mysqli_query($conn, $sqlAdmin);
@@ -67,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <div class="main">
     <h1 class="title">Admin Sign in</h1>
     <form action="" method="post" class="">
-      <input type="text" name="adminUser" placeholder="Username" />
-      <input type="password" name="adminPass" placeholder="Password" />
+      <input type="text" name="user" placeholder="Username" />
+      <input type="password" name="pass" placeholder="Password" />
       <button type="submit">Submit</button>
     </form>
   </div>
