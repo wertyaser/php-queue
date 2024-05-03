@@ -123,7 +123,8 @@ $total_transactions = $row_count_transactions['total_transactions'];
         LEFT JOIN `queue` q ON c.id = q.customer_id
         LEFT JOIN `queue2` q2 ON c.id = q2.customer_id
         LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
-        WHERE c.type = '$admin_type'";
+        WHERE c.type = '$admin_type'
+        AND DATE(c.date) = CURDATE()";
 
                     $result = mysqli_query($conn, $sql);
 

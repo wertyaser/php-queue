@@ -58,20 +58,20 @@ if ($result_queued2->num_rows > 0) {
     }
 }
 
-$window = "window3"; // Specify the window to display
+// $window = "window3"; // Specify the window to display
 
-// Fetch current customer's queue number
-$sql_current3 = "SELECT customer_id FROM queue3 WHERE status='serving' AND type='$window' LIMIT 1";
-$result_current3 = $conn->query($sql_current3);
-$current_customer_number3 = "No customer";
-if ($result_current3->num_rows > 0) {
-    $current_customer_id = $result_current3->fetch_assoc()["customer_id"];
-    $sql_current_customer_number = "SELECT queue_num FROM customers WHERE id=$current_customer_id";
-    $result_current_customer_number = $conn->query($sql_current_customer_number);
-    if ($result_current_customer_number->num_rows > 0) {
-        $current_customer_number3 = $result_current_customer_number->fetch_assoc()["queue_num"];
-    }
-}
+// // Fetch current customer's queue number
+// $sql_current3 = "SELECT customer_id FROM queue3 WHERE status='serving' AND type='$window' LIMIT 1";
+// $result_current3 = $conn->query($sql_current3);
+// $current_customer_number3 = "No customer";
+// if ($result_current3->num_rows > 0) {
+//     $current_customer_id = $result_current3->fetch_assoc()["customer_id"];
+//     $sql_current_customer_number = "SELECT queue_num FROM customers WHERE id=$current_customer_id";
+//     $result_current_customer_number = $conn->query($sql_current_customer_number);
+//     if ($result_current_customer_number->num_rows > 0) {
+//         $current_customer_number3 = $result_current_customer_number->fetch_assoc()["queue_num"];
+//     }
+// }
 
 // $sql_queued3 = "SELECT customer_id FROM queue3 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
 // $result_queued3 = $conn->query($sql_queued3);
@@ -111,7 +111,7 @@ if ($result_current3->num_rows > 0) {
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">NOW SERVING</h1>
                     <hr class="my-5">
-                    <p class="text-center text-white text-semibold text-8xl my-5">
+                    <p class="text-center text-white text-semibold text-9xl my-5">
                         <?php echo $current_customer_number1; ?>
                     </p>
                 </div>
@@ -134,7 +134,7 @@ if ($result_current3->num_rows > 0) {
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">NOW SERVING</h1>
                     <hr class="my-5">
-                    <p class="text-center text-white text-semibold text-8xl my-5">
+                    <p class="text-center text-white text-semibold text-9xl my-5">
                         <?php echo $current_customer_number2; ?>
                     </p>
                 </div>
