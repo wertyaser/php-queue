@@ -96,15 +96,16 @@ if ($result_current3->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/output.css">
-    <title>Monitoring Page</title>
+    <title>Monitoring</title>
 
 </head>
 
-<body class="bg-blue-400 h-screen">
+<body class="bg-blue-400 h-screen mx-20">
+    <img class="mx-auto my-5" src="assets/logo.png" alt="">
     <main class="grid grid-rows-1 mx-auto">
         <div class="1">
             <div class="my-5 bg-yellow-500 p-5">
-                <h1 class="text-center font-semibold text-white text-7xl">WINDOW 1</h1>
+                <h1 class="text-center font-semibold text-white text-7xl">WINDOW 1 (DISPATCH)</h1>
             </div>
             <div class="grid grid-rows-4 grid-flow-col gap-4 my-5">
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">
@@ -127,7 +128,7 @@ if ($result_current3->num_rows > 0) {
 
         <div class="2">
             <div class="my-5 bg-yellow-500 p-5">
-                <h1 class="text-center font-semibold text-white text-7xl">WINDOW 2</h1>
+                <h1 class="text-center font-semibold text-white text-7xl">WINDOW 2 (LOADING & UNLOADING)</h1>
             </div>
             <div class="grid grid-rows-4 grid-flow-col gap-4 my-5">
                 <div class="row-span-4 col-span-2 bg-blue-500 p-5 rounded-lg">

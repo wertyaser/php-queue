@@ -56,13 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/output.css">
-  <title>Queuing System</title>
+  <title>Login</title>
 </head>
 
-<body>
-
-  <div class="flex justify-center items-center h-screen">
-    <div class="w-6/12 p-5 shadow-xl bg-white rounded-md border">
+<body class="bg-blue-500">
+  <div class="flex justify-center items-center h-screen ">
+    <div class="w-6/12 p-5 shadow-xl bg-white  rounded-md border shadow-xl">
       <img class="mx-auto" src="assets/logo.png" alt="Buildnet Logo">
       <!-- <h1 class="text-center text-2xl ">LOGIN</h1> -->
       <form action="" method="post" class="mt-3">

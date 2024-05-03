@@ -61,9 +61,9 @@ $total_transactions = $row_count_transactions['total_transactions'];
 </head>
 
 <body class="bg-blue-400 min-h-screen">
+    <img class="mx-auto my-10" src="assets/logo.png" alt="">
     <main class="mx-auto w-11/12 max-w-7xl h-full pb-16">
-
-        <div class="flex justify-between pt-24 mb-10">
+        <div class="flex justify-between mb-10">
             <h1 class="text-white font-display text-5xl">Cashier Dashboard</h1>
             <div class="flex gap-3">
                 <form action="" method="post">

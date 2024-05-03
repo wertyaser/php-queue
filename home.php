@@ -126,13 +126,15 @@ $conn->close();
         <form id="transactionForm">
             <input type="text" id="customer_name" name="customer_name" placeholder="Name" required>
             <select id="transaction" name="transaction" required>
-                <option value="window1">Transaction 1</option>
-                <option value="window2">Transaction 2</option>
-                <option value="window3">Transaction 3</option>
+                <option value="window1">Dispatch</option>
+                <option value="window2">Loading & Unloading</option>
             </select>
-            <button type="button" onclick="generateRandomNumber()">
-                Generate Queue Number
-            </button>
+            <div class="">
+                <button type="button" onclick="generateRandomNumber()">
+                    Generate Queue Number
+                </button>
+                <button class="primary" onclick="handleClearFields()">Clear</button>
+            </div>
         </form>
     </div>
 
@@ -141,6 +143,10 @@ $conn->close();
 
 </body>
 <script>
+    function handleClearFields() {
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((input) => (input.value = ""));
+    }
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
@@ -155,7 +161,7 @@ $conn->close();
                 // Show SweetAlert
                 swal({
                     title: 'Your Queue Number: ' + randomNumber,
-                    text: 'Please go to the ' + transaction,
+                    text: 'Please proceed to the ' + transaction,
                     icon: 'success',
                     button: 'OK'
                 });
