@@ -45,10 +45,10 @@ if (isset($_GET['update_id'])) {
     <title>Document</title>
 </head>
 
-<body class="min-h-screen bg-blue-500 py-16 relative">
+<body class="min-h-screen bg-blue-400 py-16 relative">
     <main class="container mx-auto ma-w-7xl w-11/12">
         <button onClick="handleBackButton()" type="button"
-            class="flex items-center gap-2 border border-white mb-16 rounded-md hover:bg-white/[.5] transition-all px-6 py-3">
+            class="flex items-center gap-2 border border-white mb-4 rounded-md hover:bg-white/[.5] transition-all px-6 py-3">
             <svg class="text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-undo-2">
@@ -57,24 +57,24 @@ if (isset($_GET['update_id'])) {
             </svg>
             <span class="text-white">Back</span>
         </button>
-        <h1 class="text-left font-display text-4xl mb-14 text-pink">
-            Edit Information:
+        <h1 class="font-display text-white text-4xl text-center text-pink">
+            Edit Information
         </h1>
         <form method="post" class="max-w-2xl mx-auto w-full mt-12">
             <div class="flex items-center gap-2 mb-3">
-                <input type="text" id="name" name="name" value="<?php echo $name ?>" required
+                <input type="text" id="name" name="name" value="<?php echo $name; ?>" required
                     class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full"
                     placeholder="Name" />
             </div>
-            <textarea placeholder="Remarks...." class="w-full mb-6 p-3" name="remarks" id="remarks" cols="30" rows="10"
-                value="<?php echo $remarks ?>"></textarea>
+            <textarea placeholder="<?php echo $remarks; ?>" class="w-full mb-6 p-3" name="remarks" id="remarks"
+                cols="30" rows="10"></textarea>
             <div class="flex items-center gap-2">
                 <button type="button" onClick="handleClearFields()"
-                    class="px-6 py-4 rounded-md border border-white hover:bg-white/[.5] transition-all">
+                    class="px-6 py-4 rounded-md border text-white border-white hover:bg-white/[.5] transition-all">
                     Clear
                 </button>
                 <button type="submit" name="submit"
-                    class="bg-green-600 text-white rounded-md px-6 py-4 border border-white w-full hover:bg-pink-violet transition-all">
+                    class="bg-blue-600 text-white rounded-md px-6 py-4 border border-white w-full transition-all">
                     Update
                 </button>
             </div>

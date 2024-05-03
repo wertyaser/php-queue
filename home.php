@@ -113,31 +113,36 @@ $conn->close();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" />
-    <link rel="stylesheet" href="css/index.css">
+    <!-- <link rel="stylesheet" href="./css/pico-main/css/pico.min.css" /> -->
+    <link rel="stylesheet" href="css/output.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Queuing System</title>
 </head>
 
-<body>
-    <div class="main-home">
-        <h1 class="title">Queuing System</h1>
-        <form id="transactionForm">
-            <input type="text" id="customer_name" name="customer_name" placeholder="Name" required>
-            <select id="transaction" name="transaction" required>
-                <option value="window1">Dispatch</option>
-                <option value="window2">Loading & Unloading</option>
-            </select>
-            <div class="">
-                <button type="button" onclick="generateRandomNumber()">
-                    Generate Queue Number
-                </button>
-                <button class="primary" onclick="handleClearFields()">Clear</button>
-            </div>
-        </form>
+<body class="bg-blue-500">
+    <div class="flex justify-center items-center h-screen p-10">
+        <div class="w-6/12 p-5 shadow-xl bg-white  rounded-md border">
+            <!-- <h1 class="title">Queuing System</h1> -->
+            <img class="mx-auto" src="assets/logo.png" alt="Buildnet Logo">
+            <form class="" id="transactionForm">
+                <input class="p-4 border block w-full mt-3" type="text" id="customer_name" name="customer_name"
+                    placeholder="Name" required>
+                <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required>
+                    <option value="window1">Dispatch</option>
+                    <option value="window2">Loading & Unloading</option>
+                </select>
+                <div class="grid grid-cols-3 mt-3 gap-2">
+                    <button class="col-span-2 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
+                        onclick="generateRandomNumber()">
+                        Generate Queue Number
+                    </button>
+                    <button class=" p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
+                        onclick="handleClearFields()">Clear</button>
+                </div>
+            </form>
+        </div>
     </div>
-
 
 
 
