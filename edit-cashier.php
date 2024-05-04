@@ -61,11 +61,13 @@ if (isset($_GET['update_id'])) {
             Edit Information
         </h1>
         <form method="post" class="max-w-2xl mx-auto w-full mt-12">
-            <div class="flex items-center gap-2 mb-3">
+            <div class="mb-3">
+            <label class="text-lg text-white" for="name">Name:</label>
                 <input type="text" id="name" name="name" value="<?php echo $name; ?>" required
                     class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full"
                     placeholder="Name" />
             </div>
+            <label class="text-lg text-white" for="remarks">Remarks:</label>
             <textarea placeholder="<?php echo $remarks; ?>" class="w-full mb-6 p-3" name="remarks" id="remarks"
                 cols="30" rows="10"></textarea>
             <div class="flex items-center gap-2">
