@@ -176,6 +176,19 @@ $total_transactions = $row_count_transactions['total_transactions'];
         </div>
     </main>
 </body>
+<script>
+    // Function to reload the page every 5 seconds
+    function reloadPage() {
+        setTimeout(function () {
+            location.reload();
+        }, 3000); // 3000 milliseconds = 5 seconds
+    }
+
+    // Call the reloadPage function when the page loads
+    window.onload = function () {
+        reloadPage();
+    };
+</script>
 
 </html>
 
