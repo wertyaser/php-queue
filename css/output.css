@@ -620,6 +620,11 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -718,6 +723,10 @@ video {
 
 .grid-rows-4 {
   grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.content-center {
+  align-content: center;
 }
 
 .items-center {
@@ -882,6 +891,11 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-4xl {

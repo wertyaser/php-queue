@@ -101,7 +101,10 @@ if ($result_queued2->num_rows > 0) {
 </head>
 
 <body class="bg-blue-400 h-screen mx-20">
-    <img class="mx-auto my-5" src="assets/logo.png" alt="">
+    <div class="flex justify-between ">
+        <img class=" my-5" src="assets/logo.png" alt="">
+        <h1 class="text-center my-auto text-7xl text-white font-semibold" id="current-time"></h1>
+    </div>
     <main class="grid grid-rows-1 mx-auto">
         <div class="1">
             <div class="my-5 bg-yellow-500 p-5">
@@ -162,6 +165,17 @@ if ($result_queued2->num_rows > 0) {
     window.onload = function () {
         reloadPage();
     };
+
+    // Function to display the current time
+    let currentTime = document.getElementById("current-time");
+
+    setInterval(() => {
+        let date = new Date();
+        currentTime.innerHTML = date.toLocaleTimeString();
+    }, 1000);
+    let date = new Date();
+    time.innerHTML = date.toLocaleTimeString();
+
 </script>
 
 </html>
