@@ -5,10 +5,7 @@ if (isset($_GET['delete_id'])) {
     $id = $_GET['delete_id'];
 
     $sql = "DELETE FROM customers WHERE id = $id;";
-    $sql .= "SET @num := 0;
-            UPDATE users
-            SET student_id = @num := @num + 1
-            ORDER BY student_id;";
+
 
     $result = mysqli_multi_query($conn, $sql);
     if ($result) {
