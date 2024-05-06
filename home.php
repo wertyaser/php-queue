@@ -137,7 +137,7 @@ $conn->close();
                         onclick="generateRandomNumber()">
                         Generate Queue Number
                     </button>
-                    <button class=" p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
+                    <button class=" p-3 bg-yellow-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="handleClearFields()">Clear</button>
                 </div>
             </form>

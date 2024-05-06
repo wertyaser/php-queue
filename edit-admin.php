@@ -45,7 +45,7 @@ if (isset($_GET['update_id'])) {
   <title>Document</title>
 </head>
 
-<body class="min-h-screen bg-blue-400 py-16 relative">
+<body class="min-h-screen bg-blue-500 py-16 relative">
   <main class="container mx-auto ma-w-7xl w-11/12">
     <button onClick="handleBackButton()" type="button"
       class="flex items-center gap-2 border border-white mb-4 rounded-md hover:bg-white/[.5] transition-all px-6 py-3">

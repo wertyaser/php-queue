@@ -15,7 +15,7 @@ if ($result_current1->num_rows > 0) {
     }
 }
 
-$sql_queued1 = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
+$sql_queued1 = "SELECT customer_id FROM queue WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 9";
 $result_queued1 = $conn->query($sql_queued1);
 $queued_customers1 = [];
 if ($result_queued1->num_rows > 0) {
@@ -44,7 +44,7 @@ if ($result_current2->num_rows > 0) {
     }
 }
 
-$sql_queued2 = "SELECT customer_id FROM queue2 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
+$sql_queued2 = "SELECT customer_id FROM queue2 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 9";
 $result_queued2 = $conn->query($sql_queued2);
 $queued_customers2 = [];
 if ($result_queued2->num_rows > 0) {
@@ -103,7 +103,7 @@ if ($result_queued2->num_rows > 0) {
 <body class="bg-blue-400 h-screen mx-20">
     <div class="flex justify-between ">
         <img class=" my-5" src="assets/logo.png" alt="">
-        <h1 class="text-center my-auto text-7xl text-white font-semibold" id="current-time"></h1>
+        <h1 class=" text-center shadow-sm my-auto text-8xl text-white font-semibold" id="current-time"></h1>
     </div>
     <main class="grid grid-rows-1 mx-auto">
         <div class="1">
@@ -121,9 +121,11 @@ if ($result_queued2->num_rows > 0) {
                 <div class="row-span-4 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">WAITING</h1>
                     <hr class="my-5">
-                    <?php foreach ($queued_customers1 as $queued_customer) { ?>
-                        <p class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></p>
-                    <?php } ?>
+                    <ol class="grid grid-cols-3">
+                        <?php foreach ($queued_customers1 as $queued_customer) { ?>
+                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></li>
+                        <?php } ?>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -144,9 +146,11 @@ if ($result_queued2->num_rows > 0) {
                 <div class="row-span-4 bg-blue-500 p-5 rounded-lg">
                     <h1 class="text-center text-white font-semibold text-6xl">WAITING</h1>
                     <hr class="my-5">
-                    <?php foreach ($queued_customers2 as $queued_customer) { ?>
-                        <p class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></p>
-                    <?php } ?>
+                    <ol class="grid grid-cols-3">
+                        <?php foreach ($queued_customers2 as $queued_customer) { ?>
+                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></li>
+                        <?php } ?>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -158,7 +162,7 @@ if ($result_queued2->num_rows > 0) {
     function reloadPage() {
         setTimeout(function () {
             location.reload();
-        }, 3000); // 3000 milliseconds = 5 seconds
+        }, 4000); // 3000 milliseconds = 5 seconds
     }
 
     // Call the reloadPage function when the page loads
