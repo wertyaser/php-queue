@@ -177,31 +177,17 @@ $total_transactions = $row_count_transactions['total_transactions'];
     </main>
 </body>
 <script>
-    // Function to reload the page every 5 seconds
-    function reloadPage() {
-        setTimeout(function () {
-            location.reload();
-        }, 3000); // 3000 milliseconds = 5 seconds
-    }
+    // // Function to reload the page every 5 seconds
+    // function reloadPage() {
+    //     setTimeout(function () {
+    //         location.reload();
+    //     }, 3000); // 3000 milliseconds = 5 seconds
+    // }
 
-    // Call the reloadPage function when the page loads
-    window.onload = function () {
-        reloadPage();
-    };
+    // // Call the reloadPage function when the page loads
+    // window.onload = function () {
+    //     reloadPage();
+    // };
 </script>
 
 </html>
-
-<!-- 
-// // Get the current date
-// $current_date = date("Y-m-d");
-
-// // SQL query to count transactions by type for the current date
-// $sql_count_by_type = "SELECT type, COUNT(*) AS count FROM `customers` WHERE date = '$current_date' GROUP BY type";
-// $result_count_by_type = mysqli_query($conn, $sql_count_by_type);
-
-// // Store the counts in an associative array
-// $type_counts = array();
-// while ($row_count_by_type = mysqli_fetch_assoc($result_count_by_type)) {
-// $type_counts[$row_count_by_type['type']] = $row_count_by_type['count'];
-// } -->
