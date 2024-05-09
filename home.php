@@ -2,7 +2,18 @@
 session_start();
 include ("db_connect.php");
 // var_dump($_POST);
-
+$drivers_name = array(
+    array('id' => 1, 'name' => 'Alice'),
+    array('id' => 2, 'name' => 'Bob'),
+    array('id' => 3, 'name' => 'Charlie'),
+    array('id' => 4, 'name' => 'David'),
+    array('id' => 5, 'name' => 'Eve'),
+    array('id' => 6, 'name' => 'Frank'),
+    array('id' => 7, 'name' => 'Grace'),
+    array('id' => 8, 'name' => 'Helen'),
+    array('id' => 9, 'name' => 'Ivy'),
+    array('id' => 10, 'name' => 'Jack')
+);
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -126,11 +137,24 @@ $conn->close();
             <!-- <h1 class="title">Queuing System</h1> -->
             <img class="mx-auto" src="assets/logo.png" alt="Buildnet Logo">
             <form class="" id="transactionForm">
-                <input class="p-4 border block w-full mt-3" type="text" id="customer_name" name="customer_name"
-                    placeholder="Name" required>
-                <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required>
+                <!-- <input class="p-4 border block w-full mt-3" type="text" id="customer_name" name="customer_name"
+                    placeholder="Name" required> -->
+                <select class="p-4 border block w-full mt-3" name="names">
+                    <option value="" selected disabled>Select a name</option>
+                    <?php foreach ($drivers_name as $person): ?>
+                        <option value="<?php echo $person['id']; ?>"><?php echo $person['name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required
+                    onchange="showSelection(this)">
                     <option value="window1">Dispatch</option>
                     <option value="window2">Loading & Unloading</option>
+                </select>
+                <select class="p-4 border block w-full mt-3" id="additionalSelect" name="additionalSelect"
+                    style="display: none;">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
                 </select>
                 <div class="grid grid-cols-3 mt-3 gap-2">
                     <button class="col-span-2 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
@@ -148,6 +172,17 @@ $conn->close();
 
 </body>
 <script>
+    function showSelection(selectElement) {
+        var additionalSelect = document.getElementById('additionalSelect');
+
+        if (selectElement.value === 'window2') {
+            additionalSelect.style.display = 'block';
+        } else {
+            additionalSelect.style.display = 'none';
+
+        }
+    }
+
     function handleClearFields() {
         const inputs = document.querySelectorAll("input");
         inputs.forEach((input) => (input.value = ""));
