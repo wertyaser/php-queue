@@ -147,14 +147,16 @@ $conn->close();
                 </select>
                 <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required
                     onchange="showSelection(this)">
+                    <option value="" selected disabled>Select a Transaction Type</option>
                     <option value="window1">Dispatch</option>
                     <option value="window2">Loading & Unloading</option>
                 </select>
                 <select class="p-4 border block w-full mt-3" id="additionalSelect" name="additionalSelect"
                     style="display: none;">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="option1">PETRON - LIMESTONE</option>
+                    <option value="option2">MASINLOK FLY ASH</option>
+                    <option value="option3">SUAL FLY ASH</option>
+                    <option value="option3">LPI FLY ASH</option>
                 </select>
                 <div class="">
                     <button class="w-full mt-3 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
