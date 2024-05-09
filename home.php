@@ -139,10 +139,10 @@ $conn->close();
             <form class="" id="transactionForm">
                 <!-- <input class="p-4 border block w-full mt-3" type="text" id="customer_name" name="customer_name"
                     placeholder="Name" required> -->
-                <select class="p-4 border block w-full mt-3" name="names">
+                <select class="p-4 border block w-full mt-3" id="customer_name" name="customer_name">
                     <option value="" selected disabled>Select a name</option>
                     <?php foreach ($drivers_name as $person): ?>
-                        <option value="<?php echo $person['id']; ?>"><?php echo $person['name']; ?></option>
+                        <option value="<?php echo $person['name']; ?>"><?php echo $person['name']; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required
@@ -190,6 +190,7 @@ $conn->close();
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
+        // const customerName = document.getElementById('customer_name').value;
         const randomNumber = Math.floor(Math.random() * 9000) + 1000;
 
         // Save to database using AJAX
