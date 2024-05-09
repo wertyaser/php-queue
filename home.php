@@ -4,19 +4,22 @@ include ("db_connect.php");
 // var_dump($_POST);
 // Get all drivers name
 
-
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $transaction = $_POST["transaction"];
     $randomNumber = $_POST["random_number"];
     $customerName = $_POST["customer_name"];
+    $projectSite = $_POST["project_site"];
 
     $sql = "INSERT INTO customers (name, type, queue_num) VALUES (?,?,?)";
     $stmt = $conn->prepare($sql);
 
     //queue for window 1
     if ($transaction === 'window1') {
+        // $sql = "INSERT INTO customers (name, type, queue_num) VALUES (?,?,?)";
+        // $stmt = $conn->prepare($sql);
+
         // Bind parameters with string data type
         $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
         $stmt->execute();
@@ -46,6 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //for windows 2
     } elseif ($transaction === 'window2') {
+        // $sql = "INSERT INTO customers (name, type, queue_num, project_site) VALUES (?,?,?,?)";
+        // $stmt = $conn->prepare($sql);
+
         // Bind parameters with string data type
         $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
         $stmt->execute();
@@ -103,8 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //for mapping drivers/helpers names
 $sql_names = "SELECT * FROM drivers_helpers";
-
 $names_result = $conn->query($sql_names);
+
+$sql_sites = "SELECT * FROM sites";
+$sites_result = $conn->query($sql_sites);
 
 $conn->close();
 
@@ -151,27 +159,34 @@ $conn->close();
                     <option value="window2">Loading & Unloading</option>
                 </select>
                 <select class="p-4 border block w-full mt-3" id="additionalSelect" name="additionalSelect"
-                    style="display: none;">
-                    <option value="option1">PETRON - LIMESTONE</option>
-                    <option value="option2">MASINLOK FLY ASH</option>
-                    <option value="option3">SUAL FLY ASH</option>
-                    <option value="option3">LPI FLY ASH</option>
+                    style="display: none;" name="project_site" id="project_site">
+                    <option value="" selected disabled>Select Project Site</option>
+                    <?php
+                    if ($sites_result->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $sites_result->fetch_assoc()) {
+                            echo "<option value='" . $row["site"] . "'>" . $row["site"] . "</option>";
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    ?>
                 </select>
                 <div class="grid grid-cols-3 gap-3">
                     <button class="col-span-2 w-full mt-3 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="generateRandomNumber()">
                         Generate Queue Number
                     </button>
-                    <a class="border border-blue-600 p-3 rounded-lg text-blue-700 font-thin font-italic text-center mt-3"
-                        href="register.php">Register
-                        Here!</a>
-                </div>
-                <!-- <div class="grid grid-cols-3 mt-3 gap-2">
+            </form>
+            <a class="border border-blue-600 p-3 rounded-lg text-blue-700 font-thin font-italic text-center mt-3"
+                href="register.php">Register
+                Here!</a>
+        </div>
+        <!-- <div class="grid grid-cols-3 mt-3 gap-2">
                     <button class=" p-3 bg-yellow-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="handleClearFields()">Clear</button>
                 </div> -->
-            </form>
-        </div>
+    </div>
     </div>
 
 
@@ -192,7 +207,7 @@ $conn->close();
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
-        // const customerName = document.getElementById('customer_name').value;
+        // const site = document.getElementById('project_site').value;
         const randomNumber = Math.floor(Math.random() * 9000) + 1000;
 
         // Save to database using AJAX
