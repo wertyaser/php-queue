@@ -156,14 +156,16 @@ $conn->close();
                     <option value="option2">Option 2</option>
                     <option value="option3">Option 3</option>
                 </select>
-                <div class="grid grid-cols-3 mt-3 gap-2">
-                    <button class="col-span-2 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
+                <div class="">
+                    <button class="w-full mt-3 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="generateRandomNumber()">
                         Generate Queue Number
                     </button>
+                </div>
+                <!-- <div class="grid grid-cols-3 mt-3 gap-2">
                     <button class=" p-3 bg-yellow-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="handleClearFields()">Clear</button>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
@@ -183,10 +185,10 @@ $conn->close();
         }
     }
 
-    function handleClearFields() {
-        const inputs = document.querySelectorAll("input");
-        inputs.forEach((input) => (input.value = ""));
-    }
+    // function handleClearFields() {
+    //     const inputs = document.querySelectorAll("input");
+    //     inputs.forEach((input) => (input.value = ""));
+    // }
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
