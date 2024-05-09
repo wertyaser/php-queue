@@ -2,18 +2,9 @@
 session_start();
 include ("db_connect.php");
 // var_dump($_POST);
-$drivers_name = array(
-    array('id' => 1, 'name' => 'Alice'),
-    array('id' => 2, 'name' => 'Bob'),
-    array('id' => 3, 'name' => 'Charlie'),
-    array('id' => 4, 'name' => 'David'),
-    array('id' => 5, 'name' => 'Eve'),
-    array('id' => 6, 'name' => 'Frank'),
-    array('id' => 7, 'name' => 'Grace'),
-    array('id' => 8, 'name' => 'Helen'),
-    array('id' => 9, 'name' => 'Ivy'),
-    array('id' => 10, 'name' => 'Jack')
-);
+// Get all drivers name
+
+
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -110,10 +101,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-//for windows3
+//for mapping drivers/helpers names
+$sql_names = "SELECT * FROM drivers_helpers";
 
+$names_result = $conn->query($sql_names);
 
 $conn->close();
+
 ?>
 
 
@@ -137,17 +131,22 @@ $conn->close();
             <!-- <h1 class="title">Queuing System</h1> -->
             <img class="mx-auto" src="assets/logo.png" alt="Buildnet Logo">
             <form class="" id="transactionForm">
-                <!-- <input class="p-4 border block w-full mt-3" type="text" id="customer_name" name="customer_name"
-                    placeholder="Name" required> -->
                 <select class="p-4 border block w-full mt-3" id="customer_name" name="customer_name">
                     <option value="" selected disabled>Select a name</option>
-                    <?php foreach ($drivers_name as $person): ?>
-                        <option value="<?php echo $person['name']; ?>"><?php echo $person['name']; ?></option>
-                    <?php endforeach; ?>
+                    <?php
+                    if ($names_result->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $names_result->fetch_assoc()) {
+                            echo "<option value='" . $row["name"] . "'>" . $row["name"] . "</option>";
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    ?>
                 </select>
                 <select class="p-4 border block w-full mt-3" id="transaction" name="transaction" required
                     onchange="showSelection(this)">
-                    <option value="" selected disabled>Select a Transaction Type</option>
+                    <option value="" selected disabled>Select a Transaction</option>
                     <option value="window1">Dispatch</option>
                     <option value="window2">Loading & Unloading</option>
                 </select>
@@ -187,10 +186,6 @@ $conn->close();
         }
     }
 
-    // function handleClearFields() {
-    //     const inputs = document.querySelectorAll("input");
-    //     inputs.forEach((input) => (input.value = ""));
-    // }
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
