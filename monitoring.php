@@ -58,34 +58,6 @@ if ($result_queued2->num_rows > 0) {
     }
 }
 
-// $window = "window3"; // Specify the window to display
-
-// // Fetch current customer's queue number
-// $sql_current3 = "SELECT customer_id FROM queue3 WHERE status='serving' AND type='$window' LIMIT 1";
-// $result_current3 = $conn->query($sql_current3);
-// $current_customer_number3 = "No customer";
-// if ($result_current3->num_rows > 0) {
-//     $current_customer_id = $result_current3->fetch_assoc()["customer_id"];
-//     $sql_current_customer_number = "SELECT queue_num FROM customers WHERE id=$current_customer_id";
-//     $result_current_customer_number = $conn->query($sql_current_customer_number);
-//     if ($result_current_customer_number->num_rows > 0) {
-//         $current_customer_number3 = $result_current_customer_number->fetch_assoc()["queue_num"];
-//     }
-// }
-
-// $sql_queued3 = "SELECT customer_id FROM queue3 WHERE status='queued' AND type='$window' ORDER BY customer_id ASC LIMIT 5";
-// $result_queued3 = $conn->query($sql_queued3);
-// $queued_customers3 = [];
-// if ($result_queued3->num_rows > 0) {
-//     while ($row = $result_queued3->fetch_assoc()) {
-//         $customer_id = $row["customer_id"];
-//         $sql_customer_number = "SELECT queue_num FROM customers WHERE id=$customer_id";
-//         $result_customer_number = $conn->query($sql_customer_number);
-//         if ($result_customer_number->num_rows > 0) {
-//             $queued_customers3[] = $result_customer_number->fetch_assoc()["queue_num"];
-//         }
-//     }
-// }
 ?>
 
 
