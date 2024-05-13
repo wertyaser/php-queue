@@ -11,9 +11,10 @@ if ($admin_type === 'window1') {
     $button_name .= '1';
 } elseif ($admin_type === 'window2') {
     $button_name .= '2';
-} elseif ($admin_type === 'window3') {
-    $button_name .= '3';
 }
+// } elseif ($admin_type === 'window3') {
+//     $button_name .= '3';
+// }
 
 if (isset($_POST['next_customer1'])) {
     // Update queue status for current and next customer
@@ -32,14 +33,14 @@ if (isset($_POST["next_customer2"])) {
     $conn->query($sql_update_current_queue);
     $conn->query($sql_update_next_queue);
 }
-if (isset($_POST["next_customer3"])) {
-    // Update queue status for current and next customer
-    $sql_update_current_queue = "UPDATE queue3 SET status='served', time_end=NOW() WHERE status='serving'";
-    $sql_update_next_queue = "UPDATE queue3 SET status='serving', time_start=NOW() WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
+// if (isset($_POST["next_customer3"])) {
+//     // Update queue status for current and next customer
+//     $sql_update_current_queue = "UPDATE queue3 SET status='served', time_end=NOW() WHERE status='serving'";
+//     $sql_update_next_queue = "UPDATE queue3 SET status='serving', time_start=NOW() WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
 
-    $conn->query($sql_update_current_queue);
-    $conn->query($sql_update_next_queue);
-}
+//     $conn->query($sql_update_current_queue);
+//     $conn->query($sql_update_next_queue);
+// }
 
 
 $sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$admin_type' AND DATE(date) = CURDATE()";
@@ -79,7 +80,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
                         href="logout.php">Logout</a></button>
             </div>
         </div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
             <h1 class="text-xl text-blue-700 font-bold my-5 text-center">Total of Transactions(Today):
                 <?php echo $total_transactions ?>
             </h1>
@@ -106,6 +107,9 @@ $total_transactions = $row_count_transactions['total_transactions'];
                             End
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Project Site
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Remarks
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -117,12 +121,12 @@ $total_transactions = $row_count_transactions['total_transactions'];
                     <?php
                     $sql = "SELECT c.*, 
                q.time_start AS q_time_start, q.time_end AS q_time_end,
-               q2.time_start AS q2_time_start, q2.time_end AS q2_time_end,
-               q3.time_start AS q3_time_start, q3.time_end AS q3_time_end
+               q2.time_start AS q2_time_start, q2.time_end AS q2_time_end
+            --    q3.time_start AS q3_time_start, q3.time_end AS q3_time_end
         FROM `customers` c
         LEFT JOIN `queue` q ON c.id = q.customer_id
         LEFT JOIN `queue2` q2 ON c.id = q2.customer_id
-        LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
+        -- LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
         WHERE c.type = '$admin_type'
         AND DATE(c.date) = CURDATE()";
 
@@ -136,6 +140,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
                             $type = $row['type'];
                             $date = $row['date'];
                             $remarks = $row['remarks'];
+                            $site = $row['project_site'];
                             $time_start = '';
                             $time_end = '';
 
@@ -161,6 +166,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
             <td class="px-6 py-4">' . $date . '</td>
             <td class="px-6 py-4">' . $time_start . '</td>
             <td class="px-6 py-4">' . $time_end . '</td>
+            <td class="px-6 py-4">' . $site . '</td>
             <td class="px-6 py-4">' . $remarks . '</td>
             <td class="px-6 py-4">
                 <a class="p-2 bg-green-600 text-semibold rounded-lg border shadow border-green-400" href="edit-admin.php?update_id=' . $id . '">Edit</a>

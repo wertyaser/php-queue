@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customerName = $_POST["customer_name"];
     $projectSite = $_POST["project_site"];
 
-    $sql = "INSERT INTO customers (name, type, queue_num) VALUES (?,?,?)";
+    $sql = "INSERT INTO customers (name, type, queue_num, project_site) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
 
     //queue for window 1
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $stmt = $conn->prepare($sql);
 
         // Bind parameters with string data type
-        $stmt->bind_param("ssi", $customerName, $transaction, $randomNumber);
+        $stmt->bind_param("ssis", $customerName, $transaction, $randomNumber, $projectSite);
         $stmt->execute();
 
         // Get the customer_id of the inserted customer
@@ -158,8 +158,8 @@ $conn->close();
                     <option value="window1">Dispatch</option>
                     <option value="window2">Loading & Unloading</option>
                 </select>
-                <select class="p-4 border block w-full mt-3" id="additionalSelect" name="additionalSelect"
-                    style="display: none;" name="project_site" id="project_site">
+                <select class="p-4 border block w-full mt-3" style="display: none;" name="project_site"
+                    id="project_site">
                     <option value="" selected disabled>Select Project Site</option>
                     <?php
                     if ($sites_result->num_rows > 0) {
@@ -194,7 +194,7 @@ $conn->close();
 </body>
 <script>
     function showSelection(selectElement) {
-        var additionalSelect = document.getElementById('additionalSelect');
+        var additionalSelect = document.getElementById('project_site');
 
         if (selectElement.value === 'window2') {
             additionalSelect.style.display = 'block';
@@ -207,14 +207,14 @@ $conn->close();
     function generateRandomNumber() {
         const transaction = document.getElementById('transaction').value;
         const customerName = document.getElementById('customer_name').value;
-        // const site = document.getElementById('project_site').value;
+        const site = document.getElementById('project_site').value;
         const randomNumber = Math.floor(Math.random() * 9000) + 1000;
 
         // Save to database using AJAX
         $.ajax({
             type: 'POST',
             url: 'home.php',
-            data: { transaction: transaction, random_number: randomNumber, customer_name: customerName },
+            data: { transaction: transaction, random_number: randomNumber, customer_name: customerName, project_site: site },
             success: function (response) {
                 // Show SweetAlert
                 swal({
