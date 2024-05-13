@@ -65,12 +65,12 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
                     <?php
                     $sql = "SELECT c.*, 
                    q.time_start AS q_time_start, q.time_end AS q_time_end,
-                   q2.time_start AS q2_time_start, q2.time_end AS q2_time_end,
-                   q3.time_start AS q3_time_start, q3.time_end AS q3_time_end
+                   q2.time_start AS q2_time_start, q2.time_end AS q2_time_end
+                --    q3.time_start AS q3_time_start, q3.time_end AS q3_time_end
             FROM `customers` c
             LEFT JOIN `queue` q ON c.id = q.customer_id
             LEFT JOIN `queue2` q2 ON c.id = q2.customer_id
-            LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
+            -- LEFT JOIN `queue3` q3 ON c.id = q3.customer_id
             WHERE c.type = '$cashier_type'
             AND DATE(date) = CURDATE()";
 
@@ -85,6 +85,7 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
                             $type = $row['type'];
                             $date = $row['date'];
                             $remarks = $row['remarks'];
+                            $site = $row['project_site'];
                             $time_start = '';
                             $time_end = '';
 
@@ -110,6 +111,7 @@ header('Content-Disposition: attachment; filename="cashier_report.xls"');
             <td>' . $date . '</td>
             <td>' . $time_start . '</td>
             <td>' . $time_end . '</td>
+            <td>' . $site . '</td>
             <td>' . $remarks . '</td>
            
         </tr>';

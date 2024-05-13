@@ -151,11 +151,12 @@ $total_transactions = $row_count_transactions['total_transactions'];
                             } elseif ($row['q2_time_start'] !== null && $row['q2_time_end'] !== null) {
                                 $time_start = $row['q2_time_start'];
                                 $time_end = $row['q2_time_end'];
-                            } elseif ($row['q3_time_start'] !== null && $row['q3_time_end'] !== null) {
-                                $time_start = $row['q3_time_start'];
-                                $time_end = $row['q3_time_end'];
                             }
-
+                            // elseif ($row['q3_time_start'] !== null && $row['q3_time_end'] !== null) {
+                            //     $time_start = $row['q3_time_start'];
+                            //     $time_end = $row['q3_time_end'];
+                            // }
+                    
                             echo '
                    
         <tr class="border-b font-light whitespace-nowrap text-white">

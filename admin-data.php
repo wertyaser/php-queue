@@ -88,6 +88,7 @@ header('Content-Disposition: attachment; filename="admin_report.xls"');
                             $type = $row['type'];
                             $date = $row['date'];
                             $remarks = $row['remarks'];
+                            $site = $row['project_site'];
                             $time_start = '';
                             $time_end = '';
 
@@ -122,6 +123,7 @@ header('Content-Disposition: attachment; filename="admin_report.xls"');
             <td>' . $time_start . '</td>
             <td>' . $time_end . '</td>
             <td>' . $duration . '</td>
+            <td>' . $site . '</td>
             <td>' . $remarks . '</td>
            
         </tr>';
