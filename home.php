@@ -174,21 +174,19 @@ $conn->close();
                     }
                     ?>
                 </select>
-                <div class="grid grid-cols-3 gap-3">
+                <div class="">
                     <button class="col-span-2 w-full mt-3 p-3 bg-blue-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="generateRandomNumber()">
                         Generate Queue Number
                     </button>
+                </div>
             </form>
-            <a class="border border-blue-600 p-3 rounded-lg text-blue-700 font-thin font-italic text-center mt-3"
-                href="register.php">Register
-                Here!</a>
-        </div>
-        <!-- <div class="grid grid-cols-3 mt-3 gap-2">
+
+            <!-- <div class="grid grid-cols-3 mt-3 gap-2">
                     <button class=" p-3 bg-yellow-500 text-white rounded-lg shadow-lg" type="button"
                         onclick="handleClearFields()">Clear</button>
                 </div> -->
-    </div>
+        </div>
     </div>
 
 

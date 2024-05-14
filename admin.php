@@ -80,6 +80,12 @@ $total_transactions = $row_count_transactions['total_transactions'];
                         href="logout.php">Logout</a></button>
             </div>
         </div>
+        <div class="flex gap-2 mx-auto w-full ">
+            <a class="bg-yellow-500 border border-white p-3 rounded-lg text-white font-semibold font-italic text-center mt-3"
+                href="register.php">Add Driver/Helper</a>
+            <a class="bg-yellow-500 border border-white p-3 rounded-lg text-white font-semibold font-italic text-center mt-3"
+                href="add-site.php">Add Site</a>
+        </div>
         <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
             <h1 class="text-xl text-blue-700 font-bold my-5 text-center">Total of Transactions(Today):
                 <?php echo $total_transactions ?>
