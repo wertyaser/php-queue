@@ -107,7 +107,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
                             End
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Project Site
+                            Site
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Remarks
