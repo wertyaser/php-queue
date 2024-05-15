@@ -74,10 +74,14 @@ if ($result_queued2->num_rows > 0) {
 
 <body class="bg-blue-400 h-screen mx-20">
     <div class="flex justify-between">
-        <img class=" my-5" src="assets/logo.png" alt="">
-        <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-date"></h1>
-        <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-time"></h1>
+        <img class="my-5" src="assets/logo.png" alt="">
+        <div class="my-auto">
+            <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-date"></h1>
+            <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-time"></h1>
+        </div>
     </div>
+
+
     <main class="grid grid-rows-1 mx-auto">
         <div class="1">
             <div class="my-5 bg-yellow-500 p-5">
@@ -96,7 +100,8 @@ if ($result_queued2->num_rows > 0) {
                     <hr class="my-5">
                     <ol class="grid grid-cols-3">
                         <?php foreach ($queued_customers1 as $queued_customer) { ?>
-                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></li>
+                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?>
+                            </li>
                         <?php } ?>
                     </ol>
                 </div>
@@ -121,7 +126,8 @@ if ($result_queued2->num_rows > 0) {
                     <hr class="my-5">
                     <ol class="grid grid-cols-3">
                         <?php foreach ($queued_customers2 as $queued_customer) { ?>
-                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?></li>
+                            <li class="text-white text-4xl font-semibold text-center"><?php echo $queued_customer; ?>
+                            </li>
                         <?php } ?>
                     </ol>
                 </div>
