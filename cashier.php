@@ -57,7 +57,7 @@ $total_transactions = $row_count_transactions['total_transactions'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/output.css" />
-    <title>Cashier</title>
+    <title>Cashier Dashboard</title>
 </head>
 
 <body class="bg-blue-400 min-h-screen">

@@ -42,7 +42,7 @@ if (isset($_GET['update_id'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/output.css">
-  <title>Document</title>
+  <title>Edit</title>
 </head>
 
 <body class="min-h-screen bg-blue-500 py-16 relative">

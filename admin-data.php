@@ -21,7 +21,7 @@ header('Content-Disposition: attachment; filename="admin_report.xls"');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashier</title>
+    <title>Admin</title>
 </head>
 
 <body>

@@ -42,7 +42,7 @@ if (isset($_GET['update_id'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/output.css">
-    <title>Document</title>
+    <title>Edit</title>
 </head>
 
 <body class="min-h-screen bg-blue-400 py-16 relative">
@@ -62,7 +62,7 @@ if (isset($_GET['update_id'])) {
         </h1>
         <form method="post" class="max-w-2xl mx-auto w-full mt-12">
             <div class="mb-3">
-            <label class="text-lg text-white" for="name">Name:</label>
+                <label class="text-lg text-white" for="name">Name:</label>
                 <input type="text" id="name" name="name" value="<?php echo $name; ?>" required
                     class="border border-white rounded-md mb-3 min-w-0 bg-blue px-6 py-4 block w-full"
                     placeholder="Name" />

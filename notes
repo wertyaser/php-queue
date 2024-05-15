@@ -1,15 +1,31 @@
-cashier
--add col to the table for site
-
-admin
--move the register user to the admin
--create a register for sites
-
 imports
 -download ajax
 -download
 
----ADMIN ACCOUNTS---
+Tools/Software Needed:
+-Xampp
+Editor Tools:
+-Visual Studio Code
+
+GUIDE
+-OPEN XAMPP
+-START APACHE
+-START MYSQL
+
+TO OPEN THE SYSTEM GO TO BROWSER AND ENTER THIS:
+
+LOGIN PAGE
+http://localhost/queue/
+
+GENERATE QUEUE
+http://localhost/queue/home.php
+
+MONITORING
+http://localhost/queue/monitoring.php
+
+---
+
+ADMIN ACCOUNTS
 username: admin1
 password: admin123
 
@@ -18,25 +34,11 @@ password: admin123
 
 ---
 
----CASHIER ACCOUNTS---
+CASHIER ACCOUNTS
 username: cashier1
 password: cashier123
 
 username: cashier2
 password: cashier123
 
---------GUIDE---------
--OPEN XAMPP
--START APACHE
--START MYSQL
-
-TO OPEN THE SYSTEM GO TO BROWSER AND ENTER THIS:
-
-LOGIN PAGE
-http://localhost/q/
-
-GENERATE QUEUE
-http://localhost/q/home.php
-
-MONITORING
-http://localhost/q/monitoring.php
+---
