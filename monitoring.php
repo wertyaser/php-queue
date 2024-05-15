@@ -73,9 +73,10 @@ if ($result_queued2->num_rows > 0) {
 </head>
 
 <body class="bg-blue-400 h-screen mx-20">
-    <div class="flex justify-between ">
+    <div class="flex justify-between">
         <img class=" my-5" src="assets/logo.png" alt="">
-        <h1 class=" text-center shadow-sm my-auto text-8xl text-white font-semibold" id="current-time"></h1>
+        <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-date"></h1>
+        <h1 class=" text-center my-auto shadow-sm text-8xl text-white font-semibold" id="current-time"></h1>
     </div>
     <main class="grid grid-rows-1 mx-auto">
         <div class="1">
@@ -124,7 +125,9 @@ if ($result_queued2->num_rows > 0) {
                         <?php } ?>
                     </ol>
                 </div>
+
             </div>
+
         </div>
     </main>
 
@@ -142,15 +145,43 @@ if ($result_queued2->num_rows > 0) {
         reloadPage();
     };
 
-    // Function to display the current time
-    let currentTime = document.getElementById("current-time");
+    // // Function to display the current time
+    // let currentTime = document.getElementById("current-time");
 
-    setInterval(() => {
+
+    // setInterval(() => {
+    //     let date = new Date();
+    //     let month = date.getMonth() + 1;
+    //     let day = date.getDate();
+    //     let year = date.getFullYear();
+
+    //     currentTime.innerHTML = date.toLocaleTimeString();
+    // }, 1000);
+    // let date = new Date();
+    // currentTime.innerHTML = date.toLocaleTimeString();
+
+    function displayTimeAndDate() {
+        let currentTime = document.getElementById("current-time");
+        let currentDate = document.getElementById("current-date");
         let date = new Date();
-        currentTime.innerHTML = date.toLocaleTimeString();
-    }, 1000);
-    let date = new Date();
-    time.innerHTML = date.toLocaleTimeString();
+
+        // Get the current time
+        let time = date.toLocaleTimeString();
+        currentTime.innerHTML = time;
+
+        // Get the current date
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        let formattedDate = `${month}/${day}/${year}`;
+        currentDate.innerHTML = formattedDate;
+    }
+
+    // Initial display of time and date
+    displayTimeAndDate();
+
+    // Update the time every second
+    setInterval(displayTimeAndDate, 1000);
 
 </script>
 
