@@ -33,14 +33,6 @@ if (isset($_POST["next_customer2"])) {
     $conn->query($sql_update_current_queue);
     $conn->query($sql_update_next_queue);
 }
-// if (isset($_POST["next_customer3"])) {
-//     // Update queue status for current and next customer
-//     $sql_update_current_queue = "UPDATE queue3 SET status='served', time_end=NOW() WHERE status='serving'";
-//     $sql_update_next_queue = "UPDATE queue3 SET status='serving', time_start=NOW() WHERE status='queued' ORDER BY customer_id ASC LIMIT 1";
-
-//     $conn->query($sql_update_current_queue);
-//     $conn->query($sql_update_next_queue);
-// }
 
 
 $sql_count_transactions = "SELECT COUNT(*) AS total_transactions FROM customers WHERE type = '$admin_type' AND DATE(date) = CURDATE()";
