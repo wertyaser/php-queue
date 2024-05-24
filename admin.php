@@ -120,7 +120,6 @@ $total_transactions = $row_count_transactions['total_transactions'];
                     $sql = "SELECT c.*, 
                q.time_start AS q_time_start, q.time_end AS q_time_end,
                q2.time_start AS q2_time_start, q2.time_end AS q2_time_end
-            --    q3.time_start AS q3_time_start, q3.time_end AS q3_time_end
         FROM `customers` c
         LEFT JOIN `queue` q ON c.id = q.customer_id
         LEFT JOIN `queue2` q2 ON c.id = q2.customer_id
